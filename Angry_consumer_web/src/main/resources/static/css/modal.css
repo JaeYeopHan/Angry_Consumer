@@ -1,0 +1,92 @@
+
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  z-index: 9999;
+  margin: auto;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.3);
+}
+
+.modal-content {
+  position: relative;
+  background-color: #FFF;
+  margin: auto;
+  top: 10em;
+  border: 1px solid #888;
+  width: 30em;
+  height: 26em;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  animation-name: animatetop;
+  animation-duration: 0.5s
+}
+
+#signup-modal > .modal-content{
+  height: 32em;
+}
+
+.modal-close{
+  position: absolute;
+  right: 0.3em;
+}
+
+.modal-close .fa-times{
+  margin: 0.5em 0.5em 1em 1em;
+  border-radius: 50%;
+  padding: 4px 7px;
+  font-size: 2em;
+  cursor: pointer;
+  transition: all, 0.4s;
+  transition-timing-function: ease;
+  color: #FF305B;
+}
+
+.modal-close .fa-times:hover{
+  color: #FFF;
+  background-color: #FF305B;
+}
+
+@keyframes animatetop {
+  from {top: -10px; opacity: 0}
+  to {top: 10em; opacity: 1}
+}
+
+.login-modal{
+  text-align: center;
+}
+
+.login-modal h4{
+  color: #000;
+  font-family: "Nanum Gothic", "Helvetica";
+  font-size: 36px;
+  font-weight: bold;
+}
+
+.button-style{
+  margin: 0.5em 4em;
+  padding: 0.7em 0;
+  background-color: #2A5E91;
+  font-size: 16px;
+  color: #fff;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  outline: none;
+}
+
+.login-button{
+  display: block;
+  width: 290px;
+  border: 1px solid #fff;
+  background-color: #FF305B;
+}
+
+.facebook-login i{
+  padding-right: 5px;
+  font-size: 20px;
+}
+
+
+

@@ -1,0 +1,100 @@
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+
+.main-content p{
+  font-family: 'Hanna', fantasy;
+  font-size: 30px;
+  margin-left: 3em;
+  color: #EE305B;
+}
+
+.main-searchbar{
+  margin: 2.5em 0em;
+}
+
+.main-searchbar input{
+  margin-top: 2px;
+  width: 25em;
+  height: 2.5em;
+  border: 3px solid #EE305B;
+  border-radius: 15px;
+}
+
+.main-searchbar button{
+  margin-left: -30px;
+  font-size: 20px;
+  width: 6em;
+  height: 48px;
+  background-color: #EE305B;
+  color: #fff;
+  border: 1px solid #EE305B;
+  border-radius: 15px;
+}
+
+.main-center-align{
+  text-align: center;
+}
+
+.main-center-align input{
+  padding-left: 2em;
+  font-size: 16px;
+  outline: none;
+}
+
+
+.demo-card-wide .mdl-card {
+  width: 520px;
+
+}
+.demo-card-wide > .mdl-card__title {
+  color: #000;
+  height: 176px;
+  background: url('/img/example_article.png') center / cover;
+}
+.demo-card-wide > .mdl-card__menu {
+  color: #000;
+}
+
+ul{
+  list-style: none;
+  margin-bottom: 15em;
+  margin-left: 3em;
+}
+
+.main-now-article-list li{
+  display: inline-block;
+  margin: 1em auto;
+  width: 33%;
+}
+
+/* article content */
+.mdl-card__title-text{
+  font-family: 'Hanna', fantasy;
+}
+
+.mdl-card__supporting-text{
+  font-family: 'Nanum Gothicm';
+}
+
+.mdl-card__actions{
+  vertical-align: middle;
+}
+
+.mdl-button{
+  color: #EE305B;
+}
+
+.mdl-button-align-left{
+  float: right;
+}
+
+.article-details{
+  display: inline-block;
+  margin: 9px 12px;
+  color: #424242;
+  font-size: 16px;
+  vertical-align: middle;
+}
+
+.article-details i{
+  margin-right: 5px;
+}

@@ -1,0 +1,41 @@
+@import url(http://fonts.googleapis.com/earlyaccess/hanna.css);
+
+.mdl-layout__header{
+  margin: 0.5em 0em;
+}
+
+.mdl-layout__header a{
+  color: #fff;
+  text-decoration: none;
+}
+
+.mdl-layout-title {
+  font-family: 'Hanna', fantasy;
+  font-size: 30px;
+}
+
+header {
+  position: absolute;
+  top: 0;
+}
+
+.main-background-image{
+  height: 35em;
+  background-image: url('/img/sniper_one.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+#login_button, #signup_button{
+  cursor: pointer;
+}
+
+.mdl-navigation img{
+  width: 30px;
+  height: 30px;
+  -webkit-border-radius:16px;
+  -moz-border-radius:16px;
+  border-radius:16px;
+  border: 2px solid #EE305B;
+}
