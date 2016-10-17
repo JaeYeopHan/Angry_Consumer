@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <meta charset="UTF-8">
+  <title>Main page</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://code.getmdl.io/1.2.1/material.indigo-pink.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/footer.css">
+  <link rel="stylesheet" href="/css/header.css">
+  <link rel="stylesheet" href="/css/modal.css">
+  <link rel="stylesheet" href="/font-awesome-4.6.3/css/font-awesome.css">
+  </head>
+<body>
+
+  <div class="">
+    <div class="main-background-image">
+      <div class="main-title text-center">
+        <p>___________</p>
+        <h3>상업용 블로그에 지친<span>소비자</span></h3>
+        <p>화난 소비자들의 본격적인 반격</p>
+        <a href="/">
+        <p class="write-link"><i class="fa fa-pencil"></i>저격글 쓰러 가기</p></a>
+      </div>
+    </div>
+    <header class="mdl-layout__header mdl-layout__header--transparent">
+      <div class="mdl-layout__header-row">
+        <span class="mdl-layout-title"><a href="/">앵그리컨슈머</a></span>
+        <div class="mdl-layout-spacer"></div>
+        <nav class="mdl-navigation">
+          <a class="mdl-navigation__link" id="login_button">Login</a>
+          <a class="mdl-navigation__link" id="signup_button">Sign Up</a>
+
+          <a class="mdl-navigation__link"><img src="/img/me.jpg" alt=""></a>
+          <a class="mdl-navigation__link">Han Jae Yeop</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- login modal -->
+    <div class="modal" id="login-modal">
+      <div class="modal-content">
+        <span class="modal-close"> <i class="fa fa-times"></i> </span>
+        <div class="login-modal">
+          <h4>Login</h4>
+          <form action="#" method="post">
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+              <input class="mdl-textfield__input" type="email" id="userEmail" name="userEmail">
+              <label class="mdl-textfield__label" for="userEmail">Email</label>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+              <input class="mdl-textfield__input" type="password" id="userPassword" name="userPassword">
+              <label class="mdl-textfield__label" for="userPassword">Password</label>
+            </div>
+            <button type="submit" class="login-button button-style"> Login </button>
+          </form>
+          <div class="facebook-login button-style">
+            <i class="fa fa-facebook"></i><span>Facebook으로 로그인하기</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- signup modal -->
+    <div class="modal" id="signup-modal">
+      <div class="modal-content">
+        <span class="modal-close"> <i class="fa fa-times"></i> </span>
+        <div class="login-modal">
+          <h4>Sign Up</h4>
+          <form action="#" method="post">
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+              <input class="mdl-textfield__input" type="email" id="newUserEmail" name="userEmail">
+              <label class="mdl-textfield__label" for="newUserEmail">Email</label>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+              <input class="mdl-textfield__input" type="password" id="newUserPassword" name="userPassword">
+              <label class="mdl-textfield__label" for="newUserPassword">Password</label>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+              <input class="mdl-textfield__input" type="text" id="userName" name="userName">
+              <label class="mdl-textfield__label" for="userName">Name</label>
+            </div>
+            <button type="submit" class="login-button button-style"> Submit </button>
+          </form>
+          <div class="facebook-login button-style">
+            <i class="fa fa-facebook"></i><span>Facebook으로 가입하기</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="main-searchbar main-center-align">
+      <label for="searchValue"></label>
+      <input type="text" placeholder="저격글을 검색하세요!" id="searchValue" name="searchValue" autofocus/><button>검 색</button>
+    </div>
+
+    <div class="main-content">
+      <p>최신 올라온 저격글</p>
+        <ul class="main-now-article-list">
+          <li>
+            <div class="demo-card-wide mdl-card mdl-shadow--2dp mdl-card-align">
+            <div class="mdl-card__title mdl-card__title_image">
+              <h2 class="mdl-card__title-text">[강남 맛집] 미술관 </h2>
+            </div>
+            <div class="mdl-card__supporting-text">
+              여기 블로그 보고 갔는데, 양 창렬입니다. 사진 올라온 것들 믿고 가시면 정말 후회하십니다.
+              직원들은 뭐이리 불친절한지, 다신 안 갈 것 같네요.
+            </div>
+            <div class="mdl-card__actions mdl-card--border">
+              <span class="article-details"><i class="fa fa-eye"></i>0</span>
+              <span class="article-details"><i class="fa fa-comment"></i>0</span>
+              <span class="article-details"><i class="fa fa-heart-o"></i>0</span>
+              <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button-align-left">MORE</a>
+            </div>
+            <div class="mdl-card__menu">
+              <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+                <i class="material-icons">share</i>
+              </button>
+            </div>
+          </div>
+          </li>
+          <li>
+            <div class="demo-card-wide mdl-card mdl-shadow--2dp mdl-card-align">
+              <div class="mdl-card__title mdl-card__title_image">
+                <h2 class="mdl-card__title-text">[강남 맛집] 미술관 </h2>
+              </div>
+              <div class="mdl-card__supporting-text">
+                여기 블로그 보고 갔는데, 양 창렬입니다. 사진 올라온 것들 믿고 가시면 정말 후회하십니다.
+                직원들은 뭐이리 불친절한지, 다신 안 갈 것 같네요.
+              </div>
+              <div class="mdl-card__actions mdl-card--border">
+                <span class="article-details"><i class="fa fa-eye"></i>0</span>
+                <span class="article-details"><i class="fa fa-comment"></i>0</span>
+                <span class="article-details"><i class="fa fa-heart-o"></i>0</span>
+                <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button-align-left">MORE</a>
+              </div>
+              <div class="mdl-card__menu">
+                <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+                  <i class="material-icons">share</i>
+                </button>
+              </div>
+            </div>
+
+          </li>
+          <li>
+            <div class="demo-card-wide mdl-card mdl-shadow--2dp mdl-card-align">
+              <div class="mdl-card__title mdl-card__title_image">
+                <h2 class="mdl-card__title-text">[강남 맛집] 미술관 </h2>
+              </div>
+              <div class="mdl-card__supporting-text">
+                여기 블로그 보고 갔는데, 양 창렬입니다. 사진 올라온 것들 믿고 가시면 정말 후회하십니다.
+                직원들은 뭐이리 불친절한지, 다신 안 갈 것 같네요.
+              </div>
+              <div class="mdl-card__actions mdl-card--border">
+                <span class="article-details"><i class="fa fa-eye"></i>0</span>
+                <span class="article-details"><i class="fa fa-comment"></i>0</span>
+                <span class="article-details"><i class="fa fa-heart-o"></i>0</span>
+                <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button-align-left">MORE</a>
+              </div>
+              <div class="mdl-card__menu">
+                <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+                  <i class="material-icons">share</i>
+                </button>
+              </div>
+            </div>
+
+          </li>
+          <li>
+            <div class="demo-card-wide mdl-card mdl-shadow--2dp mdl-card-align">
+              <div class="mdl-card__title mdl-card__title_image">
+                <h2 class="mdl-card__title-text">[강남 맛집] 미술관 </h2>
+              </div>
+              <div class="mdl-card__supporting-text">
+                여기 블로그 보고 갔는데, 양 창렬입니다. 사진 올라온 것들 믿고 가시면 정말 후회하십니다.
+                직원들은 뭐이리 불친절한지, 다신 안 갈 것 같네요.
+              </div>
+              <div class="mdl-card__actions mdl-card--border">
+                <span class="article-details"><i class="fa fa-eye"></i>0</span>
+                <span class="article-details"><i class="fa fa-comment"></i>0</span>
+                <span class="article-details"><i class="fa fa-heart-o"></i>0</span>
+                <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button-align-left">MORE</a>
+              </div>
+              <div class="mdl-card__menu">
+                <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+                  <i class="material-icons">share</i>
+                </button>
+              </div>
+            </div>
+
+          </li>
+          <li>
+            <div class="demo-card-wide mdl-card mdl-shadow--2dp mdl-card-align">
+              <div class="mdl-card__title mdl-card__title_image">
+                <h2 class="mdl-card__title-text">[강남 맛집] 미술관 </h2>
+              </div>
+              <div class="mdl-card__supporting-text">
+                여기 블로그 보고 갔는데, 양 창렬입니다. 사진 올라온 것들 믿고 가시면 정말 후회하십니다.
+                직원들은 뭐이리 불친절한지, 다신 안 갈 것 같네요.
+              </div>
+              <div class="mdl-card__actions mdl-card--border">
+                <span class="article-details"><i class="fa fa-eye"></i>0</span>
+                <span class="article-details"><i class="fa fa-comment"></i>0</span>
+                <span class="article-details"><i class="fa fa-heart-o"></i>0</span>
+                <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button-align-left">MORE</a>
+              </div>
+              <div class="mdl-card__menu">
+                <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+                  <i class="material-icons">share</i>
+                </button>
+              </div>
+            </div>
+
+          </li>
+          <li>
+            <div class="demo-card-wide mdl-card mdl-shadow--2dp mdl-card-align">
+              <div class="mdl-card__title mdl-card__title_image">
+                <h2 class="mdl-card__title-text">[강남 맛집] 미술관 </h2>
+              </div>
+              <div class="mdl-card__supporting-text">
+                여기 블로그 보고 갔는데, 양 창렬입니다. 사진 올라온 것들 믿고 가시면 정말 후회하십니다.
+                직원들은 뭐이리 불친절한지, 다신 안 갈 것 같네요.
+              </div>
+              <div class="mdl-card__actions mdl-card--border">
+                <span class="article-details"><i class="fa fa-eye"></i>0</span>
+                <span class="article-details"><i class="fa fa-comment"></i>0</span>
+                <span class="article-details"><i class="fa fa-heart-o"></i>0</span>
+                <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button-align-left">MORE</a>
+              </div>
+              <div class="mdl-card__menu">
+                <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+                  <i class="material-icons">share</i>
+                </button>
+              </div>
+            </div>
+
+          </li>
+        </ul>
+      <div class="top-btn-area">
+        <a href="#"><span class="top-btn">TOP</span></a>
+      </div>
+    </div>
+  </div>
+
+
+  <footer class="mdl-mini-footer">
+    <div class="mdl-mini-footer__left-section">
+      <div class="mdl-logo">앵그리컨슈머</div>
+      <ul class="mdl-mini-footer__link-list">
+        <li><a href="#">Help</a></li>
+        <li><a href="#">Privacy & Terms</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script defer src="https://code.getmdl.io/1.2.1/material.min.js"></script>
+
+  <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+  <script src="/js/login_modal.js"></script>
+  <script src="/js/topScroll.js"></script>
+</body>
+</html>
