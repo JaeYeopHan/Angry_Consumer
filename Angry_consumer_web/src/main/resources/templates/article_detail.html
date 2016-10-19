@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+{{> /include/head}}
+</head>
+<body>
+
+<div class="">
+  {{> /include/other_header}}
+  {{> /include/login_modal}}
+  {{> /include/signup_modal}}
+
+  <div class="article-detail-box">
+    <div class="article-detail-title">
+      <p>[강남 맛집] 11번 출구 CGV 옆 미술관</p>
+    </div>
+    <div class="article-detail-info">
+      <div class="article-detail-info__num">
+        <span class="article-detail"><i class="fa fa-eye"></i>128</span>
+        <span class="article-detail"><i class="fa fa-comment"></i>3</span>
+        <span class="article-detail"><i class="fa fa-heart-o"></i>59</span>
+      </div>
+      <div class="article-detail-info__write">
+        <span>{명사수}</span>
+        <span>한재엽</span>
+        <span>2016.10.18</span>
+      </div>
+    </div>
+    <div class="article-detail-content">
+      <img src="/img/example_article.png" alt="sample">
+      <p>
+        Content.... blarblarblar Content.... blarblarblar Content.... blarblarblar
+        Content.... blarblarblar Content.... blarblarblar Content.... blarblarblar
+        Content.... blarblarblar Content.... blarblarblar Content.... blarblarblar
+        Content.... blarblarblar Content.... blarblarblar Content.... blarblarblar
+        Content.... blarblarblar Content.... blarblarblar Content.... blarblarblar
+        Content.... blarblarblar Content.... blarblarblar Content.... blarblarblar
+        Content.... blarblarblar Content.... blarblarblar Content.... blarblarblar
+        Content.... blarblarblar Content.... blarblarblar Content.... blarblarblar
+        Content.... blarblarblar Content.... blarblarblar Content.... blarblarblar
+        Content.... blarblarblar Content.... blarblarblar Content.... blarblarblar
+        Content.... blarblarblar Content.... blarblarblar Content.... blarblarblar
+        Content.... blarblarblar Content.... blarblarblar Content.... blarblarblar
+
+      </p>
+    </div>
+    <div class="article-detail-reaction">
+      <i class="fa fa-heart"></i>
+    </div>
+
+  </div>
+  <div class="article-comment-label">
+    <p>지원사격 또는 반대하기</p>
+  </div>
+
+  <div class="article-comment-box">
+    <form action="#">
+      <div class="mdl-textfield mdl-js-textfield comment-input">
+        <textarea class="mdl-textfield__input" type="text" rows= "2" id="sample5" ></textarea>
+        <label class="mdl-textfield__label" for="sample5">Comment를 입력해주세요!</label>
+      </div>
+        <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent comment-submit-button">
+          완료
+        </button>
+    </form>
+  </div>
+  <div class="article-comment-lists">
+    <div class="article-comment-list">
+      <p><span class="user-class">{명사수}</span><span class="user-name">한재엽</span></p>
+      <p>맞아요 여기 별로에요~</p>
+    </div>
+    <div class="article-comment-list">
+      <p><span>{명사수}</span><span>한재엽</span></p>
+      <p>맞아요 여기 별로에요~</p>
+    </div>
+  </div>
+</div>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
+{{> /include/footer}}
+
+
+<script defer src="https://code.getmdl.io/1.2.1/material.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+<script src="/js/login_modal.js"></script>
+<script src="/js/topScroll.js"></script>
+</body>
+</html>
