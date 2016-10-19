@@ -1,0 +1,54 @@
+.demo-card-wide .mdl-card {
+  width: 520px;
+}
+
+.demo-card-wide > .mdl-card__title {
+  color: #000;
+  height: 176px;
+  background: url('/img/example_article.png') center / cover;
+}
+
+.demo-card-wide > .mdl-card__menu {
+  color: #000;
+}
+
+.main-now-article-list {
+  list-style: none;
+  margin-bottom: 15em;
+  margin-left: 3em;
+}
+
+.main-now-article-list li {
+  display: inline-block;
+  margin: 1.5em auto;
+  width: 33%;
+}
+
+/* article content */
+.mdl-card__title-text {
+  font-family: 'Hanna', fantasy;
+}
+
+.mdl-card__supporting-text {
+  font-family: 'Nanum Gothicm';
+}
+
+.mdl-button {
+  color: #EE305B;
+}
+
+.mdl-button-align-left {
+  float: right;
+}
+
+.article-details {
+  display: inline-block;
+  margin: 9px 12px;
+  color: #424242;
+  font-size: 14px;
+  vertical-align: middle;
+}
+
+.article-details i {
+  margin-right: 10px;
+}

@@ -1,0 +1,143 @@
+.article-detail-box {
+  margin: 10em auto 1em auto;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  width: 60em;
+  padding-bottom: 10em;
+}
+
+.article-detail-title {
+  position: relative;
+  top: 2em;
+  left: 3em
+}
+
+.article-detail-title p {
+  font-family: 'Hanna', fantasy;
+  font-size: 32px;
+}
+
+.article-detail-info {
+  position: relative;
+  top: 2em;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #EBEBEB;
+}
+
+.article-detail-info__num {
+  display: inline-block;
+  position: relative;
+  left: 3em;
+}
+
+.article-detail-info__num span {
+  padding: 0 20px 0 0;
+  font-size: 16px;
+  color: #BFBFBF;
+}
+
+.article-detail-info__num i {
+  padding-right: 10px;
+}
+
+.article-detail-info__write {
+  display: inline-block;
+  float: right;
+  padding: 0 20px;
+}
+
+.article-detail-info__write span {
+  font-size: 16px;
+  padding: 0 10px;
+}
+
+.article-detail-content {
+  position: relative;
+  top: 3em;
+  padding: 10px 3em;
+  font-family: "Nanum Gothic", "Helvetica";
+}
+
+.article-detail-content img {
+  width: 30em;
+
+}
+
+.article-detail-reaction {
+  position: relative;
+  top: 5em;
+  text-align: center;
+}
+
+.article-detail-reaction i {
+  font-size: 16px;
+  padding: 12px;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+  border: 2px solid #FF305B;
+  color: #FF305B;
+  cursor: pointer;
+  transition: all 0.4s;
+  transition-timing-function: ease;
+}
+
+.article-detail-reaction i:hover {
+  background-color: #FF305B;
+  color: #fff;
+  border-radius: 0;
+  transition: all 0.4s;
+  transition-timing-function: ease;
+}
+
+/* comment style */
+
+.article-comment-label {
+  margin: 1em auto 0em auto;
+  width: 60em;
+}
+
+.article-comment-label p {
+  font-family: 'Hanna', fantasy;
+  font-size: 16px;
+  padding-left: 12px;
+}
+
+.article-comment-box {
+  margin: 1em auto;
+  width: 60em;
+  height: 8em;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.article-comment-box form {
+  height: 8em;
+}
+
+.comment-input {
+  margin-top: -2em;
+}
+
+.comment-input textarea {
+  display: block;
+  width: 45em;
+  height: 4em;
+}
+
+.comment-submit-button {
+  float: right;
+}
+
+.article-comment-lists {
+  margin: 1em auto;
+  position: relative;
+  top: 2em;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  width: 60em;
+}
+
+.article-comment-list {
+  padding: 12px 24px;
+  padding-bottom: 0px;
+  border-bottom: 1px solid #EBEBEB;
+
+}

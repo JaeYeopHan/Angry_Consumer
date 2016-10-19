@@ -1,0 +1,126 @@
+.main-searchbar {
+  display: inline-block;
+  margin: 7em auto 4em 15em;
+}
+
+.main-searchbar input {
+  margin-top: 2px;
+  width: 25em;
+  height: 2.5em;
+  border: 3px solid #EE305B;
+  border-radius: 15px;
+}
+
+.main-searchbar button {
+  margin-left: -30px;
+  font-size: 20px;
+  width: 5em;
+  height: 48px;
+  background-color: #EE305B;
+  color: #fff;
+  border: 1px solid #EE305B;
+  border-radius: 15px;
+  outline: none;
+  cursor: pointer;
+}
+
+.main-center-align input {
+  padding-left: 2em;
+  font-size: 16px;
+  outline: none;
+}
+
+.write-button {
+  display: inline-block;
+  position: fixed;
+  right: 3em;
+  top: 10em;
+  font-family: 'Hanna', fantasy;
+  font-size: 16px;
+  padding-bottom: 1px;
+  border-bottom: 1px solid #FF305B;
+  cursor: pointer;
+}
+
+/* navigation */
+.article-classify {
+  margin-top: 7em;
+  float: left;
+  padding-right: 80px;
+  height: 1800px;
+  border-right: 1px solid #EBEBEB;
+}
+
+.article-classify ul{
+  list-style: none;
+}
+
+.article-nav-link {
+  margin: 10px 0px;
+}
+
+.article-nav-link i {
+  padding-right: 10px;
+}
+
+.article-nav-link a {
+  color: #000;
+  font-size: 16px;
+}
+
+/* article list */
+
+.article-list-all{
+  list-style: none;
+}
+
+.article-box-list {
+  margin: 1em 20em 3em 17em;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  width: 48em;
+  height: 14em;
+}
+
+.article-box-list img {
+  height: 13.97em;
+  float: left;
+  margin-right: 20px;
+}
+
+.article-title {
+  padding-top: 20px;
+  font-family: 'Hanna', fantasy;
+  font-size: 24px;
+}
+
+.article-content-thumnail {
+  padding-top: 20px;
+  padding-right: 20px;
+  font-family: "Nanum Gothic", "Helvetica";
+  font-size: 14px;
+  line-height: 0.1px;
+}
+
+.article-list-details {
+  border-top: 1px solid #EBEBEB;
+}
+
+/* article-count-navigation */
+.article-count-navigation{
+  text-align: center;
+  color: #000;
+  font-size: 16px;
+  margin-bottom: 40px;
+}
+
+.article-count{
+  display: inline;
+}
+
+.article-count a{
+  color: #000;
+}
+
+.article-count span{
+  padding: 0 10px;
+}

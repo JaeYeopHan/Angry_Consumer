@@ -1,0 +1,38 @@
+.mdl-layout__header {
+  padding: 0.5em 0em;
+}
+
+.mdl-layout__header a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.mdl-layout-title {
+  font-family: 'Hanna', fantasy;
+  font-size: 30px;
+}
+
+header {
+  position: absolute;
+  top: 0;
+}
+
+.main-background-image {
+  height: 35em;
+  background: url('../img/sniper_one.jpg') no-repeat center;
+  background-size: cover;
+}
+
+.mdl-navigation__link {
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.mdl-navigation img {
+  width: 30px;
+  height: 30px;
+  -webkit-border-radius: 16px;
+  -moz-border-radius: 16px;
+  border-radius: 16px;
+  border: 2px solid #EE305B;
+}

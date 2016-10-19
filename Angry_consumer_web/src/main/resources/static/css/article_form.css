@@ -1,0 +1,54 @@
+.article-form h3 {
+  font-family: 'Hanna', fantasy;
+  margin-left: 120px;
+  margin-top: 3em;
+  color: #000;
+}
+
+.article-box {
+  margin: 2em auto;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  width: 60em;
+  height: 40em;
+}
+
+.textfield-label {
+  position: relative;
+  top: 30px;
+  left: 50px;
+  display: inline-block;
+  padding-right: 10px;
+  font-family: 'Hanna', fantasy;
+  font-size: 16px;
+}
+
+.mdl-textfield {
+  position: relative;
+  top: 30px;
+  left: 50px;
+  display: inline-block;
+  width: 40em;
+}
+
+.content-textfield {
+}
+
+.contents-input {
+  display: inline-block;
+  position: relative;
+  top: 16px;
+  left: 52px;
+  margin-top: 20px;
+  width: 40em;
+  height: 20em;
+  outline: none;
+  font-size: 16px;
+  border: 1px solid #EBEBEB;
+}
+
+.article-box button{
+  position: relative;
+  top: 50px;
+  left: 560px;
+  margin: 0 10px;
+}
