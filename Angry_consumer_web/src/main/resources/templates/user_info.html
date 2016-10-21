@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  {{> /include/head}}
+</head>
+<body>
+
+<div class="">
+  {{> /include/other_header}}
+  {{> /include/login_modal}}
+  {{> /include/signup_modal}}
+  <div class="user_info_label">
+    <p>회원정보</p>
+  </div>
+  <div class="user_info_box">
+    <div class="profile_image">
+    </div>
+    <div class="user_id">
+      <p>ljyhanll@gmail.com</p>
+      <p>{명사수}</p>
+      <p>총 n개의 공감을 받으셨습니다!</p>
+    </div>
+    <form action="#" method="post">
+      <div class="user_info_input">
+        <label for="updateNickname">닉네임 변경</label>
+        <input type="text" id="updateNickname">
+      </div>
+      <div class="user_info_input">
+        <label for="updatePassword">비밀번호 변경</label>
+        <input type="text" id="updatePassword">
+      </div>
+      <div class="user_info_input">
+        <label for="passwordConfirm">비밀번호 확인</label>
+        <input type="text" id="passwordConfirm">
+      </div>
+      <a href="#"><button class="button-align mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+        취소
+      </button></a>
+      <button type="submit" class="button-align mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+        완료
+      </button>
+
+    </form>
+
+  </div>
+</div>
+
+{{> /include/footer}}
+
+<script defer src="https://code.getmdl.io/1.2.1/material.min.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+<script src="/js/login_modal.js"></script>
+<script src="/js/topScroll.js"></script>
+</body>
+</html>
