@@ -1,0 +1,67 @@
+.user_info_label {
+  margin: 8em auto 1em auto;
+  width: 60em;
+}
+
+.user_info_label p {
+  font-family: 'Hanna', fantasy;
+  color: #FF305B;
+  font-size: 36px;
+}
+
+.user_info_box {
+  margin: 2em auto;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  width: 60em;
+  height: 50em;
+}
+
+.user_info_box .profile_image {
+  position: relative;
+  top: 3em;
+  margin: auto;
+  background-image: url("/img/me.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 16em;
+  width: 16em;
+  border-radius: 50%;
+}
+
+.user_info_box .user_id {
+  position: relative;
+  top: 4em;
+  margin: auto;
+  text-align: center;
+
+}
+
+.user_info_box .user_id p {
+  font-size: 24px;
+  color: #C0C0C0;
+}
+
+.user_info_box form{
+  position: relative;
+  top: 5em;
+  text-align: center;
+}
+
+.user_info_input {
+  margin: 1em;
+}
+
+.user_info_input label{
+  font-size: 16px;
+}
+
+.user_info_input input{
+  width: 20em;
+  height: 2em;
+}
+
+.user_info_box .button-align {
+  position: relative;
+  left: 7em;
+}

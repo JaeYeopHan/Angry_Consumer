@@ -19,7 +19,9 @@ header {
 
 .main-background-image {
   height: 35em;
-  background: url('../img/sniper_one.jpg') no-repeat center;
+  background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('../img/sniper_one.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
   background-size: cover;
 }
 

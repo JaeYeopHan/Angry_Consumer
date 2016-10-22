@@ -1,5 +1,5 @@
 .article-detail-box {
-  margin: 10em auto 1em auto;
+  margin: 8em auto 1em auto;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   width: 60em;
   padding-bottom: 10em;
@@ -139,5 +139,11 @@
   padding: 12px 24px;
   padding-bottom: 0px;
   border-bottom: 1px solid #EBEBEB;
+}
 
+.article-navigation {
+  position: relative;
+  top: 7em;
+  margin: 0em auto;
+  width: 60em;
 }
