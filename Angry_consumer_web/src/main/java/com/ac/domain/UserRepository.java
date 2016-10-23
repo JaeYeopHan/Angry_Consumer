@@ -4,8 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
-import org.springframework.jdbc.support.GeneratedKeyHolder;
-import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
@@ -21,10 +19,10 @@ public class UserRepository {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    public List<User> getUserList() {
-        String query = "SELECT * FROM user";
-        return jdbcTemplate.query(query, new UserRowMapper());
-    }
+//    public List<User> getUserList() {
+//        String query = "SELECT * FROM user";
+//        return jdbcTemplate.query(query, new UserRowMapper());
+//    }
 
     //insert query
     public int insert(User user) {
@@ -32,6 +30,12 @@ public class UserRepository {
         return jdbcTemplate.update(query, user.getName(), user.getEmail(), user.getPassword());
     }
 
+    public int update(User user) {
+        String query = "UPDATE user SET name = ?, password=? WHERE email = ?";
+        return jdbcTemplate.update(query, user.getName(), user.getPassword(), user.getEmail());
+    }
+
+    //confirm exist email
     public User existEmail(String email) {
         String query = "SELECT * FROM user WHERE email=?";
         User resultUser;
@@ -43,6 +47,7 @@ public class UserRepository {
         return resultUser;
     }
 
+    //confirm exist name
     public User existName(String name) {
         String query = "SELECT * FROM user WHERE name=?";
         User resultUser;

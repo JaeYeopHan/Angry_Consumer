@@ -17,4 +17,9 @@ public class HttpSessionUtils {
         }
         return true;
     }
+
+    public static User getUserFromSession(HttpSession session) {
+        User sessionUser = (User) session.getAttribute(SESSION_KEY);
+        return sessionUser;
+    }
 }

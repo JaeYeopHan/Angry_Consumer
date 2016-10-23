@@ -2,10 +2,12 @@ package com.ac.web;
 
 import com.ac.domain.User;
 import com.ac.domain.UserRepository;
+import com.ac.util.HttpSessionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
@@ -56,7 +58,33 @@ public class UserController {
     }
 
     @GetMapping("/form")
-    public String update() {
+    public String updateForm(HttpSession session) {
+        if (!HttpSessionUtils.isLoginUser(session)) {
+            //로그인 모달 창 이벤트를 발생시키는게 더 좋지 않을까!
+            return "redirect:/";
+        }
         return "/user/user_info";
+    }
+
+    @PutMapping("/form")
+    public String update(String name, String password, String passwordForConfirm, HttpSession session){
+        User sessionUser = HttpSessionUtils.getUserFromSession(session);
+        System.out.println(password + ", " + passwordForConfirm);
+        if(password != ""){
+            if(password.equals(passwordForConfirm)){
+                sessionUser.setName(name);
+                sessionUser.setPassword(password);
+                userRepository.update(sessionUser);
+                System.out.println("Complete to Change name and password");
+                return "redirect:/users/form";
+            } else {
+                System.out.println("different password and password for confirm");
+            }
+        }
+        sessionUser.setName(name);
+        userRepository.update(sessionUser);
+        System.out.println("Complete to Change only name");
+        //완료되었다는 팝업창을 띄우고 싶다.
+        return "redirect:/users/form";
     }
 }
