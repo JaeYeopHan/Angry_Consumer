@@ -13,6 +13,3 @@
 * Build Tool :: Maven
 * Backend :: Spring Boot
 * Fonrtend :: HTML/CSS/JavaScript (ajax jQuery) with Material Design
-
-![GitHub Logo](/src/main/resource/static/img/main_page.png)
-Format: ![Alt Text](url)
