@@ -14,5 +14,5 @@
 * Backend :: Spring Boot
 * Fonrtend :: HTML/CSS/JavaScript (ajax jQuery) with Material Design
 
-![GitHub Logo](/images/logo.png)
+![GitHub Logo](/Users/Naver/Desktop/ /d/main_page.png)
 Format: ![Alt Text](url)
