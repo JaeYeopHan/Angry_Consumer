@@ -20,13 +20,13 @@
 ![Screenshot](./imageForREADME/main_page.png)
 
 #### login page
-![Screenshot](./imageForREADME/main_page.png)
+![Screenshot](./imageForREADME/login_page.png)
 
 #### signup page
-![Screenshot](./imageForREADME/main_page.png)
+![Screenshot](./imageForREADME/signup_page.png)
 
 #### article list page
-![Screenshot](./imageForREADME/main_page.png)
+![Screenshot](./imageForREADME/article_list_page.png)
 
 #### article detail page
-![Screenshot](./imageForREADME/main_page.png)
+![Screenshot](./imageForREADME/article_detail_page.png)
