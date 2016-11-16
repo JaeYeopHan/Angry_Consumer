@@ -13,3 +13,5 @@
 * Build Tool :: Maven
 * Backend :: Spring Boot
 * Fonrtend :: HTML/CSS/JavaScript (ajax jQuery) with Material Design
+
+![Preview](file:///Users/Naver/Desktop/%20/d/main_page.png)
