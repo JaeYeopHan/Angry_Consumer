@@ -14,6 +14,8 @@
 * Backend :: Spring Boot
 * Fonrtend :: HTML/CSS/JavaScript (ajax jQuery) with Material Design
 
+### 서비스 화면
+
 #### Main page
 ![Screenshot](./imageForREADME/main_page.png)
 
