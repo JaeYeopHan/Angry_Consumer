@@ -14,5 +14,17 @@
 * Backend :: Spring Boot
 * Fonrtend :: HTML/CSS/JavaScript (ajax jQuery) with Material Design
 
-![Screenshot](https://github.com/JaeYeopHan/Angry_Consumer/tree/develop/Angry_consumer_web/src/main/resources/static/img/main_page.png)
+#### Main page
+![Screenshot](./imageForREADME/main_page.png)
+
+#### login page
+![Screenshot](./imageForREADME/main_page.png)
+
+#### signup page
+![Screenshot](./imageForREADME/main_page.png)
+
+#### article list page
+![Screenshot](./imageForREADME/main_page.png)
+
+#### article detail page
 ![Screenshot](./imageForREADME/main_page.png)
