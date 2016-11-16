@@ -1,4 +1,8 @@
 # Angry_Consumer
+
+### 현재 진행 상황
+https://www.evernote.com/l/ATAb8FuyGE1FU4DJOtWBJrkBTedH7eOhgBo
+
 ### 서비스 컨셉
 상업용 블로그 저격 웹 사이트
 
