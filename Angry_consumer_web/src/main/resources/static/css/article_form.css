@@ -30,9 +30,6 @@
   width: 40em;
 }
 
-.content-textfield {
-}
-
 .contents-input {
   display: inline-block;
   position: relative;
@@ -46,9 +43,16 @@
   border: 1px solid #EBEBEB;
 }
 
-.article-box button{
+.article-box button {
   position: relative;
   top: 50px;
   left: 560px;
   margin: 0 10px;
+}
+
+.textfield-line .mdl-radio {
+  position: relative;
+  top: 30px;
+  left: 70px;
+  width: 5em;
 }

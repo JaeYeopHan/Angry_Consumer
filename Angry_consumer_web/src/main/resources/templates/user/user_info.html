@@ -15,32 +15,37 @@
   <div class="user_info_box">
     <div class="profile_image">
     </div>
+    {{#sessionUser}}
     <div class="user_id">
-      <p>ljyhanll@gmail.com</p>
+      <p>{{email}}</p>
       <p>{명사수}</p>
       <p>총 n개의 공감을 받으셨습니다!</p>
     </div>
-    <form action="#" method="post">
+    <form action="/users/form" method="post">
+      <input type="hidden" name="_method" value="put"/>
       <div class="user_info_input">
         <label for="updateNickname">닉네임 변경</label>
-        <input type="text" id="updateNickname">
+        <input type="text" id="updateNickname" name="name" value="{{name}}">
       </div>
       <div class="user_info_input">
         <label for="updatePassword">비밀번호 변경</label>
-        <input type="text" id="updatePassword">
+        <input type="password" id="updatePassword" name="password">
       </div>
       <div class="user_info_input">
         <label for="passwordConfirm">비밀번호 확인</label>
-        <input type="text" id="passwordConfirm">
+        <input type="password" id="passwordConfirm" name="passwordForConfirm">
       </div>
-      <a href="#"><button class="button-align mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
-        취소
-      </button></a>
-      <button type="submit" class="button-align mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-        완료
+      <a href="/">
+        <button type="button" class="button-align mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+          취소
+        </button>
+      </a>
+      <button type="submit"
+              class="button-align mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+        수정
       </button>
-
     </form>
+    {{/sessionUser}}
 
   </div>
 </div>
