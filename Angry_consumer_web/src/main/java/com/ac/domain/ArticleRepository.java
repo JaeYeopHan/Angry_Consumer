@@ -31,6 +31,11 @@ public class ArticleRepository {
         return jdbcTemplate.query(query, new ArticleRowMapper());
     }
 
+    public List<Article> getArticleListCountOfSix() {
+        String query = "SELECT * FROM article ORDER BY idArticle DESC LIMIT 6";
+        return jdbcTemplate.query(query, new ArticleRowMapper());
+    }
+
     public int articleInsert(Article article, User user) {
         KeyHolder keyHolder = new GeneratedKeyHolder();
         String query = "INSERT INTO article(title, classify, contents, user_id) VALUES(?,?,?, (SELECT id FROM USER WHERE id = ?))";
