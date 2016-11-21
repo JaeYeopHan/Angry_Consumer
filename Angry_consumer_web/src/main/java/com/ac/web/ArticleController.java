@@ -10,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
-import java.util.List;
 
 /**
  * Created by Jbee on 2016. 10. 19..
@@ -38,24 +37,18 @@ public class ArticleController {
     }
 
     @PostMapping("/create")
-    public String articleCreate(Article article) {
+    public String articleCreate(Article article, HttpSession session) {
+        User user = HttpSessionUtils.getUserFromSession(session);
+        article.setWriterId(user.getId());//객체에 user id 부여
+        article.setId(articleRepository.articleInsert(article, user));
         System.out.println(article);
-        articleRepository.articleInsert(article);
         return "redirect:/articles";
     }
 
-//    @GetMapping("/detail")//detail에는 article의 id 값을 넣자
-//    public String articleDetail() {
-//        return "/article/article_detail";
-//    }
-//
-//    @PutMapping("/{id}")
-//    public String update() {
-//        return "redirect:/articles";
-//    }
-//
-//    @DeleteMapping("/{id}")
-//    public String delete() {
-//        return "redirect:/articles";
-//    }
+    @GetMapping("/detail/{id}")//detail에는 article의 id 값을 넣자
+    public String articleDetail(@PathVariable int id, Model model) {
+        model.addAttribute("article", articleRepository.getArticleByArticleId(id));
+        System.out.println(articleRepository.getArticleByArticleId(id));
+        return "/article/article_detail";
+    }
 }
