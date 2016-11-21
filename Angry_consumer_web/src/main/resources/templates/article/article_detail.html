@@ -16,46 +16,48 @@
         목록
       </button>
     </a>
-  </div>
+    {{#isWriter}}
+    <a href="#">
+      <button class="mdl-button mdl-js-button mdl-button--raised" style="margin-left: 10px">
+        수정
+      </button>
+    </a>
+    <a href="#">
+        <button class="mdl-button mdl-js-button mdl-button--raised" style="margin-left: 10px">
+        삭제
+      </button>
+    </a>
+    {{/isWriter}}
 
+  </div>
+  {{#article}}
   <div class="article-detail-box">
     <div class="article-detail-title">
-      <p>[강남 맛집] 11번 출구 CGV 옆 미술관</p>
+      <p>{{title}}</p>
     </div>
     <div class="article-detail-info">
       <div class="article-detail-info__num">
-        <span class="article-detail"><i class="fa fa-eye"></i>128</span>
-        <span class="article-detail"><i class="fa fa-comment"></i>3</span>
-        <span class="article-detail"><i class="fa fa-heart-o"></i>59</span>
+        <span class="article-detail"><i class="fa fa-eye"></i>{{hit}}</span>
+        <span class="article-detail"><i class="fa fa-comment"></i>{{countOfComment}}</span>
+        <span class="article-detail"><i class="fa fa-heart-o"></i>{{agree}}</span>
       </div>
       <div class="article-detail-info__write">
-        <span>{명사수}</span>
-        <span>한재엽</span>
-        <span>2016.10.18</span>
+        <!--<span>{user.grade}</span>-->
+        <span>{{user.name}}</span>
+        <span>{{createDate}}</span>
       </div>
     </div>
     <div class="article-detail-content">
       <img src="/img/example_article.png" alt="sample">
       <p>
-        Content.... blarblarblar Content.... blarblarblar Content.... blarblarblar
-        Content.... blarblarblar Content.... blarblarblar Content.... blarblarblar
-        Content.... blarblarblar Content.... blarblarblar Content.... blarblarblar
-        Content.... blarblarblar Content.... blarblarblar Content.... blarblarblar
-        Content.... blarblarblar Content.... blarblarblar Content.... blarblarblar
-        Content.... blarblarblar Content.... blarblarblar Content.... blarblarblar
-        Content.... blarblarblar Content.... blarblarblar Content.... blarblarblar
-        Content.... blarblarblar Content.... blarblarblar Content.... blarblarblar
-        Content.... blarblarblar Content.... blarblarblar Content.... blarblarblar
-        Content.... blarblarblar Content.... blarblarblar Content.... blarblarblar
-        Content.... blarblarblar Content.... blarblarblar Content.... blarblarblar
-        Content.... blarblarblar Content.... blarblarblar Content.... blarblarblar
-
+        {{contents}}
       </p>
     </div>
     <div class="article-detail-reaction">
       <i class="fa fa-heart"></i>
     </div>
-
+  </div>
+  {{/article}}
   </div>
   <div class="article-comment-label">
     <p>지원사격 또는 반대하기</p>
@@ -65,7 +67,7 @@
     <form action="#">
       <div class="mdl-textfield mdl-js-textfield comment-input">
         <textarea class="mdl-textfield__input" type="text" rows= "2" id="sample5" ></textarea>
-        <label class="mdl-textfield__label" for="sample5">Comment를 입력해주세요!</label>
+        <label class="mdl-textfield__label" for="sample5">의견을 입력해주세요!</label>
       </div>
         <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent comment-submit-button">
           완료

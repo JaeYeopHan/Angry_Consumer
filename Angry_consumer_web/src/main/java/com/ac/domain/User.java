@@ -8,6 +8,7 @@ public class User {
     private String name;
     private String email;
     private String password;
+    private String grade;
 
     public int getId() {
         return id;
@@ -41,13 +42,39 @@ public class User {
         this.password = password;
     }
 
+    public String getGrade() {
+        return grade;
+    }
+
+    public void setGrade(String grade) {
+        this.grade = grade;
+    }
+
     @Override
     public String toString() {
         return "User{" +
-                "name='" + name + '\'' +
+                "id=" + id +
+                ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
+                ", grade='" + grade + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        User user = (User) o;
+
+        return id == user.id;
+
+    }
+
+    @Override
+    public int hashCode() {
+        return id;
     }
 
     public boolean matchPassword(String password) {

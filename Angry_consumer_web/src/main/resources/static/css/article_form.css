@@ -56,3 +56,9 @@
   left: 70px;
   width: 5em;
 }
+
+.content-textfield input[type=file] {
+  position: relative;
+  top: 30px;
+  left: 80px;
+}

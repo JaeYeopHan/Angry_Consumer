@@ -31,138 +31,26 @@
     </a>
 
     <ul class="article-list-all">
-      <li>
+      {{#articles}}
+      <li id="{{id}}">
         <div class="article-box-list">
           <div>
             <img src="/img/example_article.png" alt="sample">
           </div>
-          <div class="article-title">[강남 맛집] 미술관</div>
+          <div class="article-title">{{title}}</div>
           <div class="article-content-thumnail">
-            <p>여기 블로그 보고 갔는데, 양 창렬입니다. 사진 올라온 것들 믿고 가시면 정말 후회하십니다.
-              직원들은 뭐이리 불친절한지, 다신 안 갈 것 같네요.</p>
+            <p>{{contents}}</p>
           </div>
           <div class="article-list-details">
-            <span class="article-details"><i class="fa fa-eye"></i>0</span>
-            <span class="article-details"><i class="fa fa-comment"></i>0</span>
-            <span class="article-details"><i class="fa fa-heart-o"></i>0</span>
-            <a href="/articles/detail" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button-align-left"
+            <span class="article-details"><i class="fa fa-eye"></i>{{hit}}</span>
+            <span class="article-details"><i class="fa fa-comment"></i>{{countOfComment}}</span>
+            <span class="article-details"><i class="fa fa-heart-o"></i>{{agree}}</span>
+            <a href="/articles/detail/{{id}}" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button-align-left"
                style="margin-top: 3px;">MORE</a>
           </div>
         </div>
       </li>
-      <li>
-        <div class="article-box-list">
-          <div>
-            <img src="/img/example_article.png" alt="sample">
-          </div>
-          <div class="article-title">[강남 맛집] 미술관</div>
-          <div class="article-content-thumnail">
-            <p>여기 블로그 보고 갔는데, 양 창렬입니다. 사진 올라온 것들 믿고 가시면 정말 후회하십니다.
-              직원들은 뭐이리 불친절한지, 다신 안 갈 것 같네요.</p>
-          </div>
-          <div class="article-list-details">
-            <span class="article-details"><i class="fa fa-eye"></i>0</span>
-            <span class="article-details"><i class="fa fa-comment"></i>0</span>
-            <span class="article-details"><i class="fa fa-heart-o"></i>0</span>
-            <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button-align-left"
-               style="margin-top: 3px;">MORE</a>
-          </div>
-        </div>
-      </li>
-      <li>
-        <div class="article-box-list">
-          <div>
-            <img src="/img/example_article.png" alt="sample">
-          </div>
-          <div class="article-title">[강남 맛집] 미술관</div>
-          <div class="article-content-thumnail">
-            <p>여기 블로그 보고 갔는데, 양 창렬입니다. 사진 올라온 것들 믿고 가시면 정말 후회하십니다.
-              직원들은 뭐이리 불친절한지, 다신 안 갈 것 같네요.</p>
-          </div>
-          <div class="article-list-details">
-            <span class="article-details"><i class="fa fa-eye"></i>0</span>
-            <span class="article-details"><i class="fa fa-comment"></i>0</span>
-            <span class="article-details"><i class="fa fa-heart-o"></i>0</span>
-            <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button-align-left"
-               style="margin-top: 3px;">MORE</a>
-          </div>
-        </div>      </li>
-      <li>
-        <div class="article-box-list">
-          <div>
-            <img src="/img/example_article.png" alt="sample">
-          </div>
-          <div class="article-title">[강남 맛집] 미술관</div>
-          <div class="article-content-thumnail">
-            <p>여기 블로그 보고 갔는데, 양 창렬입니다. 사진 올라온 것들 믿고 가시면 정말 후회하십니다.
-              직원들은 뭐이리 불친절한지, 다신 안 갈 것 같네요.</p>
-          </div>
-          <div class="article-list-details">
-            <span class="article-details"><i class="fa fa-eye"></i>0</span>
-            <span class="article-details"><i class="fa fa-comment"></i>0</span>
-            <span class="article-details"><i class="fa fa-heart-o"></i>0</span>
-            <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button-align-left"
-               style="margin-top: 3px;">MORE</a>
-          </div>
-        </div>
-      </li>
-      <li>
-        <div class="article-box-list">
-          <div>
-            <img src="/img/example_article.png" alt="sample">
-          </div>
-          <div class="article-title">[강남 맛집] 미술관</div>
-          <div class="article-content-thumnail">
-            <p>여기 블로그 보고 갔는데, 양 창렬입니다. 사진 올라온 것들 믿고 가시면 정말 후회하십니다.
-              직원들은 뭐이리 불친절한지, 다신 안 갈 것 같네요.</p>
-          </div>
-          <div class="article-list-details">
-            <span class="article-details"><i class="fa fa-eye"></i>0</span>
-            <span class="article-details"><i class="fa fa-comment"></i>0</span>
-            <span class="article-details"><i class="fa fa-heart-o"></i>0</span>
-            <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button-align-left"
-               style="margin-top: 3px;">MORE</a>
-          </div>
-        </div>
-      </li>
-      <li>
-        <div class="article-box-list">
-          <div>
-            <img src="/img/example_article.png" alt="sample">
-          </div>
-          <div class="article-title">[강남 맛집] 미술관</div>
-          <div class="article-content-thumnail">
-            <p>여기 블로그 보고 갔는데, 양 창렬입니다. 사진 올라온 것들 믿고 가시면 정말 후회하십니다.
-              직원들은 뭐이리 불친절한지, 다신 안 갈 것 같네요.</p>
-          </div>
-          <div class="article-list-details">
-            <span class="article-details"><i class="fa fa-eye"></i>0</span>
-            <span class="article-details"><i class="fa fa-comment"></i>0</span>
-            <span class="article-details"><i class="fa fa-heart-o"></i>0</span>
-            <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button-align-left"
-               style="margin-top: 3px;">MORE</a>
-          </div>
-        </div>
-      </li>
-      <li>
-        <div class="article-box-list">
-          <div>
-            <img src="/img/example_article.png" alt="sample">
-          </div>
-          <div class="article-title">[강남 맛집] 미술관</div>
-          <div class="article-content-thumnail">
-            <p>여기 블로그 보고 갔는데, 양 창렬입니다. 사진 올라온 것들 믿고 가시면 정말 후회하십니다.
-              직원들은 뭐이리 불친절한지, 다신 안 갈 것 같네요.</p>
-          </div>
-          <div class="article-list-details">
-            <span class="article-details"><i class="fa fa-eye"></i>0</span>
-            <span class="article-details"><i class="fa fa-comment"></i>0</span>
-            <span class="article-details"><i class="fa fa-heart-o"></i>0</span>
-            <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button-align-left"
-               style="margin-top: 3px;">MORE</a>
-          </div>
-        </div>
-      </li>
+      {{/articles}}
     </ul>
     <div class="article-count-navigation">
       <span><i class="fa fa-angle-left"></i></span>
@@ -170,7 +58,7 @@
         <span><a href="">1</a></span>
       </div>
       <span><i class="fa fa-angle-right"></i></span>
-    </div>ㅞ
+    </div>
 
   </main>
   <div class="top-btn-area">
@@ -181,7 +69,6 @@
 {{> /include/footer}}
 
 <script defer src="https://code.getmdl.io/1.2.1/material.min.js"></script>
-
 <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
 <script src="/js/login_modal.js"></script>
 <script src="/js/topScroll.js"></script>

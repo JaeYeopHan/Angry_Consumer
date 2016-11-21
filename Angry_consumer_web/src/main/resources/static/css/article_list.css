@@ -100,7 +100,10 @@
   font-size: 14px;
   line-height: 0.1px;
 }
-
+.article-content-thumnail p {
+  height: 5em;
+  overflow: hidden;
+}
 .article-list-details {
   border-top: 1px solid #EBEBEB;
 }
