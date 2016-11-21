@@ -8,6 +8,7 @@ public class User {
     private String name;
     private String email;
     private String password;
+    private String grade;
 
     public int getId() {
         return id;
@@ -41,6 +42,14 @@ public class User {
         this.password = password;
     }
 
+    public String getGrade() {
+        return grade;
+    }
+
+    public void setGrade(String grade) {
+        this.grade = grade;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -48,6 +57,7 @@ public class User {
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
+                ", grade='" + grade + '\'' +
                 '}';
     }
 
