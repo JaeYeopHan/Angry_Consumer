@@ -17,16 +17,16 @@
       </button>
     </a>
   </div>
-
+  {{#article}}
   <div class="article-detail-box">
     <div class="article-detail-title">
-      <p>[강남 맛집] 11번 출구 CGV 옆 미술관</p>
+      <p>{{title}}</p>
     </div>
     <div class="article-detail-info">
       <div class="article-detail-info__num">
-        <span class="article-detail"><i class="fa fa-eye"></i>128</span>
-        <span class="article-detail"><i class="fa fa-comment"></i>3</span>
-        <span class="article-detail"><i class="fa fa-heart-o"></i>59</span>
+        <span class="article-detail"><i class="fa fa-eye"></i>{{hit}}</span>
+        <span class="article-detail"><i class="fa fa-comment"></i>{{countOfComment}}</span>
+        <span class="article-detail"><i class="fa fa-heart-o"></i>{{agree}}</span>
       </div>
       <div class="article-detail-info__write">
         <span>{명사수}</span>
@@ -37,25 +37,14 @@
     <div class="article-detail-content">
       <img src="/img/example_article.png" alt="sample">
       <p>
-        Content.... blarblarblar Content.... blarblarblar Content.... blarblarblar
-        Content.... blarblarblar Content.... blarblarblar Content.... blarblarblar
-        Content.... blarblarblar Content.... blarblarblar Content.... blarblarblar
-        Content.... blarblarblar Content.... blarblarblar Content.... blarblarblar
-        Content.... blarblarblar Content.... blarblarblar Content.... blarblarblar
-        Content.... blarblarblar Content.... blarblarblar Content.... blarblarblar
-        Content.... blarblarblar Content.... blarblarblar Content.... blarblarblar
-        Content.... blarblarblar Content.... blarblarblar Content.... blarblarblar
-        Content.... blarblarblar Content.... blarblarblar Content.... blarblarblar
-        Content.... blarblarblar Content.... blarblarblar Content.... blarblarblar
-        Content.... blarblarblar Content.... blarblarblar Content.... blarblarblar
-        Content.... blarblarblar Content.... blarblarblar Content.... blarblarblar
-
+        {{contents}}
       </p>
     </div>
     <div class="article-detail-reaction">
       <i class="fa fa-heart"></i>
     </div>
-
+  </div>
+  {{/article}}
   </div>
   <div class="article-comment-label">
     <p>지원사격 또는 반대하기</p>
