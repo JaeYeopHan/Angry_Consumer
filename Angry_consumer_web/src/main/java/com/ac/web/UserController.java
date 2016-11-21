@@ -23,23 +23,23 @@ public class UserController {
 
     @PostMapping("/create")
     public String signup(User user) {
-        if (userRepository.existEmail(user.getEmail()) != null) {
+        if (userRepository.findUserByEmail(user.getEmail()) != null) {
             System.out.println("Email is already Exist!");
             return "redirect:/";
         }
 
-        if(userRepository.existName(user.getName()) != null) {
+        if(userRepository.findUserByName(user.getName()) != null) {
             System.out.println("Name is already Exist!");
             return "redirect:/";
         }
 
-        userRepository.insert(user);
+        userRepository.userInsert(user);
         return "redirect:/";
     }
 
     @PostMapping("/login")
     public String login(String email, String password, HttpSession session) {
-        User user = userRepository.existEmail(email);
+        User user = userRepository.findUserByEmail(email);
 
         if (user == null) {
             System.out.println("Not existed user!");
@@ -48,6 +48,11 @@ public class UserController {
 
         if (!user.matchPassword(password)) {
             System.out.println("Password is wrong!");
+            return "redirect:/";
+        }
+
+        if(user.equals(HttpSessionUtils.getUserFromSession(session))) {
+            System.out.println("Already Login user!");
             return "redirect:/";
         }
 
@@ -74,7 +79,7 @@ public class UserController {
             if(password.equals(passwordForConfirm)){
                 sessionUser.setName(name);
                 sessionUser.setPassword(password);
-                userRepository.update(sessionUser);
+                userRepository.userInfoUpdate(sessionUser);
                 System.out.println("Complete to Change name and password");
                 return "redirect:/users/form";
             } else {
@@ -82,7 +87,7 @@ public class UserController {
             }
         }
         sessionUser.setName(name);
-        userRepository.update(sessionUser);
+        userRepository.userInfoUpdate(sessionUser);
         System.out.println("Complete to Change only name");
         //완료되었다는 팝업창을 띄우고 싶다.
         return "redirect:/users/form";

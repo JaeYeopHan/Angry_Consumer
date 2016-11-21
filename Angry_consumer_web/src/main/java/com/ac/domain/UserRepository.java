@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
@@ -29,6 +31,7 @@ public class UserRepository {
 
     //userInsert query
     public int userInsert(User user) {
+        KeyHolder keyHolder = new GeneratedKeyHolder();
         String query = "INSERT INTO user(name, email, password) VALUES(?,?,?)";
         return jdbcTemplate.update(query, user.getName(), user.getEmail(), user.getPassword());
     }
@@ -45,6 +48,7 @@ public class UserRepository {
         try {
             resultUser = jdbcTemplate.queryForObject(query, new Object[]{email}, new UserRowMapper());
         } catch (EmptyResultDataAccessException e) {
+            e.printStackTrace();
             return null;
         }
         return resultUser;
