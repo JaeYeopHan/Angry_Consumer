@@ -24,14 +24,7 @@ public class UserRepository {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-//    public List<User> getUserList() {
-//        String query = "SELECT * FROM user";
-//        return jdbcTemplate.query(query, new UserRowMapper());
-//    }
-
-    //userInsert query
     public int userInsert(User user) {
-        KeyHolder keyHolder = new GeneratedKeyHolder();
         String query = "INSERT INTO user(name, email, password) VALUES(?,?,?)";
         return jdbcTemplate.update(query, user.getName(), user.getEmail(), user.getPassword());
     }
@@ -41,7 +34,16 @@ public class UserRepository {
         return jdbcTemplate.update(query, user.getName(), user.getPassword(), user.getEmail());
     }
 
-    //confirm exist email
+    public String getUserGrade(User user) {
+        String query = "SELECT g.grade_name FROM USER AS u INNER JOIN grade AS g ON u.Grade_idGrade = g.idGrade WHERE id = ?";
+        return jdbcTemplate.queryForObject(query, new Object[]{user.getId()}, new RowMapper<String>() {
+            @Override
+            public String mapRow(ResultSet resultSet, int i) throws SQLException {
+                return resultSet.getString("g.grade_name");
+            }
+        });
+    }
+
     public User findUserByEmail(String email) {
         String query = "SELECT * FROM user WHERE email=?";
         User resultUser;
@@ -54,12 +56,22 @@ public class UserRepository {
         return resultUser;
     }
 
-    //confirm exist name
     public User findUserByName(String name) {
         String query = "SELECT * FROM user WHERE name=?";
         User resultUser;
         try {
             resultUser = jdbcTemplate.queryForObject(query, new Object[]{name}, new UserRowMapper());
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
+        return resultUser;
+    }
+
+    public User findUserById(int id) {
+        String query = "SELECT * FROM user WHERE id=?";
+        User resultUser;
+        try {
+            resultUser = jdbcTemplate.queryForObject(query, new Object[]{id}, new UserRowMapper());
         } catch (EmptyResultDataAccessException e) {
             return null;
         }
