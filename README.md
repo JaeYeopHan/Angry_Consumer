@@ -12,11 +12,11 @@ https://www.evernote.com/l/ATAb8FuyGE1FU4DJOtWBJrkBTedH7eOhgBo
 자신이 겪었던 참담한 현실을 보여주기 위한 웹 사이트이다.
 
 ### 기술스택
-* Web Server :: Tomcat
-* Database :: MySQL with JDBC Driver ( spring-boot-jdbc-starter )
+* WAS        :: Tomcat
+* Database   :: MySQL with JDBC Driver ( spring-boot-jdbc-starter )
 * Build Tool :: Maven
-* Backend :: Spring Boot
-* Fonrtend :: HTML/CSS/JavaScript (ajax jQuery) with Material Design
+* Backend    :: Spring Boot
+* Fonrtend   :: HTML/CSS/JavaScript (ajax jQuery) with Material Design
 
 ### 서비스 화면
 
