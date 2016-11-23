@@ -48,7 +48,7 @@ public class ArticleController {
         return "redirect:/articles";
     }
 
-    @GetMapping("/detail/{id}")
+    @GetMapping("/{id}")
     public String showArticleDetail(@PathVariable int id, Model model, HttpSession session) {
         if (!HttpSessionUtils.isLoginUser(session)) {
             //로그인 모달 창 이벤트를 발생시키는게 더 좋지 않을까!
