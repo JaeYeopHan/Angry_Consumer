@@ -91,10 +91,9 @@ public class ArticleController {
         return "article/article_update_form";
     }
 
+    //추후 PutMapping으로 수정!
     @PostMapping("/{id}/update")
-//    @ResponseBody
     public String updateArticle(@PathVariable int id, Article updatedArticle, HttpSession session) {
-        System.out.println("updateArticle method execute!");
         Article article = articleRepository.getArticleByArticleId(id);
         User user = userRepository.findUserById(article.getWriterId());
         if(!user.equals(HttpSessionUtils.getUserFromSession(session))) {
