@@ -17,12 +17,12 @@
       </button>
     </a>
     {{#myArticle}}
-    <a href="/articles/{{id}}" class="articleControlBtn" id="delete">
+    <a href="/articles/{{id}}" id="deleteBtn">
       <button class="mdl-button mdl-js-button mdl-button--raised" style="margin-left: 10px">
         식제
       </button>
     </a>
-    <a href="/articles/{{id}}" class="articleControlBtn" id="update">
+    <a href="/articles/{{id}}/form">
         <button class="mdl-button mdl-js-button mdl-button--raised" style="margin-left: 10px">
         수정
       </button>
@@ -92,6 +92,6 @@
 <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
 <script src="/js/login_modal.js"></script>
 <script src="/js/topScroll.js"></script>
-<script src="/js/delete.js"></script>
+<script src="/js/articleControl.js"></script>
 </body>
 </html>

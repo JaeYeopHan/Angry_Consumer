@@ -71,13 +71,36 @@ public class ArticleController {
     @DeleteMapping("/{id}")
     @ResponseBody
     public String deleteArticle(@PathVariable int id, Model model, HttpSession session) {
-        System.out.println("    delete!");
         Article article = articleRepository.getArticleByArticleId(id);
         User user = userRepository.findUserById(article.getWriterId());
         if(!user.equals(HttpSessionUtils.getUserFromSession(session))) {
-            return "/articles";
+            throw new IllegalStateException("자신의 글만 삭제할 수 있습니다.");
         }
         articleRepository.deleteArticle(id);
         return "/articles";
+    }
+
+    @GetMapping("/{id}/form")
+    public String articleUpdateForm(@PathVariable int id, Model model, HttpSession session) {
+        Article article = articleRepository.getArticleByArticleId(id);
+        User user = userRepository.findUserById(article.getWriterId());
+        if(!user.equals(HttpSessionUtils.getUserFromSession(session))) {
+            throw new IllegalStateException("자신의 글만 수정할 수 있습니다.");
+        }
+        model.addAttribute("article", article);
+        return "article/article_update_form";
+    }
+
+    @PostMapping("/{id}/update")
+//    @ResponseBody
+    public String updateArticle(@PathVariable int id, Article updatedArticle, HttpSession session) {
+        System.out.println("updateArticle method execute!");
+        Article article = articleRepository.getArticleByArticleId(id);
+        User user = userRepository.findUserById(article.getWriterId());
+        if(!user.equals(HttpSessionUtils.getUserFromSession(session))) {
+            throw new IllegalStateException("자신의 글만 수정할 수 있습니다.");
+        }
+        articleRepository.updateArticle(updatedArticle, article.getId());
+        return "redirect:/articles/" + id;
     }
 }
