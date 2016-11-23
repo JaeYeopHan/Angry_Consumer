@@ -48,7 +48,7 @@ public class ArticleController {
         return "redirect:/articles";
     }
 
-    @GetMapping("/detail/{id}")
+    @GetMapping("/{id}")
     public String showArticleDetail(@PathVariable int id, Model model, HttpSession session) {
         if (!HttpSessionUtils.isLoginUser(session)) {
             //로그인 모달 창 이벤트를 발생시키는게 더 좋지 않을까!
@@ -61,7 +61,45 @@ public class ArticleController {
         articleWriter.setGrade(userRepository.getUserGrade(articleWriter));
         article.setWriter(articleWriter);
         model.addAttribute("article", article);
-        model.addAttribute("isWriter", sessionedUser.equals(articleWriter));
+        if (sessionedUser.equals(articleWriter)) {
+            model.addAttribute("myArticle", article);
+        }
+
         return "/article/article_detail";
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseBody
+    public String deleteArticle(@PathVariable int id, Model model, HttpSession session) {
+        Article article = articleRepository.getArticleByArticleId(id);
+        User user = userRepository.findUserById(article.getWriterId());
+        if(!user.equals(HttpSessionUtils.getUserFromSession(session))) {
+            throw new IllegalStateException("자신의 글만 삭제할 수 있습니다.");
+        }
+        articleRepository.deleteArticle(id);
+        return "/articles";
+    }
+
+    @GetMapping("/{id}/form")
+    public String articleUpdateForm(@PathVariable int id, Model model, HttpSession session) {
+        Article article = articleRepository.getArticleByArticleId(id);
+        User user = userRepository.findUserById(article.getWriterId());
+        if(!user.equals(HttpSessionUtils.getUserFromSession(session))) {
+            throw new IllegalStateException("자신의 글만 수정할 수 있습니다.");
+        }
+        model.addAttribute("article", article);
+        return "article/article_update_form";
+    }
+
+    //추후 PutMapping으로 수정!
+    @PostMapping("/{id}/update")
+    public String updateArticle(@PathVariable int id, Article updatedArticle, HttpSession session) {
+        Article article = articleRepository.getArticleByArticleId(id);
+        User user = userRepository.findUserById(article.getWriterId());
+        if(!user.equals(HttpSessionUtils.getUserFromSession(session))) {
+            throw new IllegalStateException("자신의 글만 수정할 수 있습니다.");
+        }
+        articleRepository.updateArticle(updatedArticle, article.getId());
+        return "redirect:/articles/" + id;
     }
 }

@@ -16,21 +16,21 @@
         목록
       </button>
     </a>
-    {{#isWriter}}
-    <a href="#">
+    {{#myArticle}}
+    <a href="/articles/{{id}}" id="deleteBtn">
       <button class="mdl-button mdl-js-button mdl-button--raised" style="margin-left: 10px">
+        식제
+      </button>
+    </a>
+    <a href="/articles/{{id}}/form">
+        <button class="mdl-button mdl-js-button mdl-button--raised" style="margin-left: 10px">
         수정
       </button>
     </a>
-    <a href="#">
-        <button class="mdl-button mdl-js-button mdl-button--raised" style="margin-left: 10px">
-        삭제
-      </button>
-    </a>
-    {{/isWriter}}
+    {{/myArticle}}
 
-  </div>
   {{#article}}
+  </div>
   <div class="article-detail-box">
     <div class="article-detail-title">
       <p>{{title}}</p>
@@ -42,8 +42,8 @@
         <span class="article-detail"><i class="fa fa-heart-o"></i>{{agree}}</span>
       </div>
       <div class="article-detail-info__write">
-        <!--<span>{user.grade}</span>-->
-        <span>{{user.name}}</span>
+        <span>{{writer.grade}}</span>
+        <span>{{writer.name}}</span>
         <span>{{createDate}}</span>
       </div>
     </div>
@@ -92,5 +92,6 @@
 <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
 <script src="/js/login_modal.js"></script>
 <script src="/js/topScroll.js"></script>
+<script src="/js/articleControl.js"></script>
 </body>
 </html>

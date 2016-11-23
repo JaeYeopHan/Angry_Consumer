@@ -64,4 +64,14 @@ public class ArticleRepository {
         }
         return resultArticle;
     }
+
+    public void deleteArticle(int idArticle) {
+        jdbcTemplate.update("DELETE FROM article WHERE idArticle = ?", Integer.valueOf(idArticle));
+    }
+
+    public void updateArticle(Article article, int id) {
+        String query = "UPDATE article SET title = ?, classify = ?, contents = ? WHERE idArticle = ?";
+        jdbcTemplate.update(query, article.getTitle(), article.getClassify(), article.getContents(), id);
+    }
+
 }
