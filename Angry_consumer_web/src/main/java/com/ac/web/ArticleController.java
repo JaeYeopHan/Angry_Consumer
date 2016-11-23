@@ -61,7 +61,23 @@ public class ArticleController {
         articleWriter.setGrade(userRepository.getUserGrade(articleWriter));
         article.setWriter(articleWriter);
         model.addAttribute("article", article);
-        model.addAttribute("isWriter", sessionedUser.equals(articleWriter));
+        if (sessionedUser.equals(articleWriter)) {
+            model.addAttribute("myArticle", article);
+        }
+
         return "/article/article_detail";
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseBody
+    public String deleteArticle(@PathVariable int id, Model model, HttpSession session) {
+        System.out.println("    delete!");
+        Article article = articleRepository.getArticleByArticleId(id);
+        User user = userRepository.findUserById(article.getWriterId());
+        if(!user.equals(HttpSessionUtils.getUserFromSession(session))) {
+            return "/articles";
+        }
+        articleRepository.deleteArticle(id);
+        return "/articles";
     }
 }
