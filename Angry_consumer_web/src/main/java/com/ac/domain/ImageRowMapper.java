@@ -13,7 +13,7 @@ public final class ImageRowMapper implements RowMapper<Image> {
     @Override
     public Image mapRow(ResultSet rs, int i) throws SQLException {
         Image image = new Image();
-        image.setFilePath(rs.getString("path"));
+        image.setFileName(rs.getString("path"));
         return image;
     }
 }

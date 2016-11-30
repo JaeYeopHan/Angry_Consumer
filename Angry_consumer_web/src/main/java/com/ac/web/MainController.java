@@ -31,12 +31,11 @@ public class MainController {
 
         for(Article article : articleList) {
             int imageId = article.getIdImage();
-            String imagePath = imageRepository.getArticleImagePathById(imageId);
-            article.setFilePath(imagePath);
+            String fileName = imageRepository.getArticleImagePathById(imageId);
+            article.setFileName(fileName);
         }
 
         model.addAttribute("articles", articleList);
         return "index";
     }
-
 }

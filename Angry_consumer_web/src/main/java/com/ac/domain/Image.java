@@ -5,7 +5,7 @@ package com.ac.domain;
  */
 public class Image {
     private int idImage;
-    private String filePath;
+    private String fileName;
 
     public int getIdImage() {
         return idImage;
@@ -15,11 +15,11 @@ public class Image {
         this.idImage = idImage;
     }
 
-    public String getFilePath() {
-        return filePath;
+    public String getFileName() {
+        return fileName;
     }
 
-    public void setFilePath(String filePath) {
-        this.filePath = filePath;
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
     }
 }

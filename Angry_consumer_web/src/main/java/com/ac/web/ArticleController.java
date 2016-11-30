@@ -34,8 +34,8 @@ public class ArticleController {
 
         for(Article article : articleList) {
             int imageId = article.getIdImage();
-            String imagePath = imageRepository.getArticleImagePathById(imageId);
-            article.setFilePath(imagePath);
+            String fileName = imageRepository.getArticleImagePathById(imageId);
+            article.setFileName(fileName);
         }
 
         model.addAttribute("articles", articleList);
@@ -55,13 +55,13 @@ public class ArticleController {
     public String articleCreate(Article article, HttpSession session) {
         User user = HttpSessionUtils.getUserFromSession(session);
 
-        String fileAbsolutePath = null;
+        String fileName = null;
         MultipartFile uploadFile = article.getUploadFile();
         if (uploadFile != null) {
-            fileAbsolutePath = FileUploadUtils.fileUpload(uploadFile);
+            fileName = FileUploadUtils.fileUpload(uploadFile);
         }
 
-        int idImage = imageRepository.insertArticleImage(fileAbsolutePath);
+        int idImage = imageRepository.insertArticleImage(fileName);
         article.setWriterId(user.getId());
         article.setIdImage(idImage);
         article.setId(articleRepository.articleInsert(article, user));
@@ -77,10 +77,16 @@ public class ArticleController {
         }
 
         User sessionedUser = HttpSessionUtils.getUserFromSession(session);
+
         Article article = articleRepository.getArticleByArticleId(id);
         User articleWriter = userRepository.findUserById(article.getWriterId());
         articleWriter.setGrade(userRepository.getUserGrade(articleWriter));
         article.setWriter(articleWriter);
+
+        int imageId = article.getIdImage();
+        String fileName = imageRepository.getArticleImagePathById(imageId);
+        article.setFileName(fileName);
+
         model.addAttribute("article", article);
         if (sessionedUser.equals(articleWriter)) {
             model.addAttribute("myArticle", article);

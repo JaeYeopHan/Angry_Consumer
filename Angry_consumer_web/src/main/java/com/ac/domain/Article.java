@@ -19,7 +19,7 @@ public class Article {
     private User writer;
     private Date createDate;
     private MultipartFile uploadFile;
-    private String filePath;
+    private String fileName;
     private int idImage;
 
     public int getId() {
@@ -110,12 +110,12 @@ public class Article {
         return uploadFile;
     }
 
-    public String getFilePath() {
-        return filePath;
+    public String getFileName() {
+        return fileName;
     }
 
-    public void setFilePath(String filePath) {
-        this.filePath = filePath;
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
     }
 
     public int getIdImage() {
@@ -140,7 +140,7 @@ public class Article {
                 ", writer=" + writer +
                 ", createDate=" + createDate +
                 ", uploadFile=" + uploadFile +
-                ", filePath='" + filePath + '\'' +
+                ", fileName='" + fileName + '\'' +
                 ", idImage=" + idImage +
                 '}';
     }

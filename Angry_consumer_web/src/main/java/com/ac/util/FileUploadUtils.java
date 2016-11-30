@@ -8,16 +8,17 @@ import java.io.*;
  * Created by Jbee on 2016. 11. 22..
  */
 public class FileUploadUtils {
+    public static final String FILE_PATH = "/Users/Naver/angryconsumer_image/";
     public static final String fileUpload(MultipartFile uploadFile) {
         if(uploadFile == null) {
             return "Not Found File!";
         }
-        InputStream inputStream = null;
-        OutputStream outputStream = null;
+        InputStream inputStream;
+        OutputStream outputStream;
 
         String fileName = uploadFile.getOriginalFilename();
 
-        File file = new File("./src/main/resources/static/uploadImage/" + fileName);//path
+        File file = new File(FILE_PATH + fileName);
         try {
             inputStream = uploadFile.getInputStream();
             file.createNewFile();
@@ -32,6 +33,6 @@ public class FileUploadUtils {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return file.getAbsolutePath();
+        return fileName;
     }
 }

@@ -25,14 +25,14 @@ public class ImageRepository {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public int insertArticleImage(String path) {
+    public int insertArticleImage(String fileName) {
         KeyHolder keyHolder = new GeneratedKeyHolder();
         String query = "INSERT INTO image(path) VALUES(?)";
         jdbcTemplate.update(new PreparedStatementCreator() {
             @Override
             public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
                 PreparedStatement pstmt = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-                pstmt.setString(1, path);
+                pstmt.setString(1, fileName);
                 return pstmt;
             }
         }, keyHolder);
@@ -48,6 +48,6 @@ public class ImageRepository {
             e.printStackTrace();
             return null;
         }
-        return resultImage.getFilePath();
+        return resultImage.getFileName();
     }
 }
