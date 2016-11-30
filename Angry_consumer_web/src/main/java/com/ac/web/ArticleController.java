@@ -1,16 +1,16 @@
 package com.ac.web;
 
-import com.ac.domain.Article;
-import com.ac.domain.ArticleRepository;
-import com.ac.domain.User;
-import com.ac.domain.UserRepository;
+import com.ac.domain.*;
+import com.ac.util.FileUploadUtils;
 import com.ac.util.HttpSessionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 /**
  * Created by Jbee on 2016. 10. 19..
@@ -25,9 +25,20 @@ public class ArticleController {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private ImageRepository imageRepository;
+
     @GetMapping("")
     public String listPage(Model model) {
-        model.addAttribute("articles", articleRepository.getArticleList());
+        List<Article> articleList = articleRepository.getArticleList();
+
+        for(Article article : articleList) {
+            int imageId = article.getIdImage();
+            String fileName = imageRepository.getArticleImagePathById(imageId);
+            article.setFileName(fileName);
+        }
+
+        model.addAttribute("articles", articleList);
         return "/article/article_list";
     }
 
@@ -43,8 +54,18 @@ public class ArticleController {
     @PostMapping("/create")
     public String articleCreate(Article article, HttpSession session) {
         User user = HttpSessionUtils.getUserFromSession(session);
+
+        String fileName = null;
+        MultipartFile uploadFile = article.getUploadFile();
+        if (uploadFile != null) {
+            fileName = FileUploadUtils.fileUpload(uploadFile);
+        }
+
+        int idImage = imageRepository.insertArticleImage(fileName);
         article.setWriterId(user.getId());
+        article.setIdImage(idImage);
         article.setId(articleRepository.articleInsert(article, user));
+
         return "redirect:/articles";
     }
 
@@ -56,10 +77,16 @@ public class ArticleController {
         }
 
         User sessionedUser = HttpSessionUtils.getUserFromSession(session);
+
         Article article = articleRepository.getArticleByArticleId(id);
         User articleWriter = userRepository.findUserById(article.getWriterId());
         articleWriter.setGrade(userRepository.getUserGrade(articleWriter));
         article.setWriter(articleWriter);
+
+        int imageId = article.getIdImage();
+        String fileName = imageRepository.getArticleImagePathById(imageId);
+        article.setFileName(fileName);
+
         model.addAttribute("article", article);
         if (sessionedUser.equals(articleWriter)) {
             model.addAttribute("myArticle", article);
@@ -73,7 +100,7 @@ public class ArticleController {
     public String deleteArticle(@PathVariable int id, Model model, HttpSession session) {
         Article article = articleRepository.getArticleByArticleId(id);
         User user = userRepository.findUserById(article.getWriterId());
-        if(!user.equals(HttpSessionUtils.getUserFromSession(session))) {
+        if (!user.equals(HttpSessionUtils.getUserFromSession(session))) {
             throw new IllegalStateException("자신의 글만 삭제할 수 있습니다.");
         }
         articleRepository.deleteArticle(id);
@@ -84,7 +111,7 @@ public class ArticleController {
     public String articleUpdateForm(@PathVariable int id, Model model, HttpSession session) {
         Article article = articleRepository.getArticleByArticleId(id);
         User user = userRepository.findUserById(article.getWriterId());
-        if(!user.equals(HttpSessionUtils.getUserFromSession(session))) {
+        if (!user.equals(HttpSessionUtils.getUserFromSession(session))) {
             throw new IllegalStateException("자신의 글만 수정할 수 있습니다.");
         }
         model.addAttribute("article", article);
@@ -96,7 +123,7 @@ public class ArticleController {
     public String updateArticle(@PathVariable int id, Article updatedArticle, HttpSession session) {
         Article article = articleRepository.getArticleByArticleId(id);
         User user = userRepository.findUserById(article.getWriterId());
-        if(!user.equals(HttpSessionUtils.getUserFromSession(session))) {
+        if (!user.equals(HttpSessionUtils.getUserFromSession(session))) {
             throw new IllegalStateException("자신의 글만 수정할 수 있습니다.");
         }
         articleRepository.updateArticle(updatedArticle, article.getId());
