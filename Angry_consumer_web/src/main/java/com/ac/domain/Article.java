@@ -19,6 +19,8 @@ public class Article {
     private User writer;
     private Date createDate;
     private MultipartFile uploadFile;
+    private String filePath;
+    private int idImage;
 
     public int getId() {
         return id;
@@ -108,6 +110,22 @@ public class Article {
         return uploadFile;
     }
 
+    public String getFilePath() {
+        return filePath;
+    }
+
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
+    }
+
+    public int getIdImage() {
+        return idImage;
+    }
+
+    public void setIdImage(int idImage) {
+        this.idImage = idImage;
+    }
+
     @Override
     public String toString() {
         return "Article{" +
@@ -119,8 +137,11 @@ public class Article {
                 ", hit=" + hit +
                 ", countOfComment=" + countOfComment +
                 ", agree=" + agree +
+                ", writer=" + writer +
                 ", createDate=" + createDate +
                 ", uploadFile=" + uploadFile +
+                ", filePath='" + filePath + '\'' +
+                ", idImage=" + idImage +
                 '}';
     }
 }

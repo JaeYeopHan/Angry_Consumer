@@ -20,6 +20,7 @@ public final class ArticleRowMapper implements RowMapper<Article> {
         article.setAgree(rs.getInt("agree"));
         article.setWriterId(rs.getInt("user_id"));
         article.setCreateDate(rs.getDate("create_date"));
+        article.setIdImage(rs.getInt("idImage"));
         return article;
     }
 }
