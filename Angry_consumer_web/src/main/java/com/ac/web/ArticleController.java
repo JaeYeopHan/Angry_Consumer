@@ -55,15 +55,14 @@ public class ArticleController {
     public String articleCreate(Article article, HttpSession session) {
         User user = HttpSessionUtils.getUserFromSession(session);
 
-        String fileName = null;
         MultipartFile uploadFile = article.getUploadFile();
         if (uploadFile != null) {
-            fileName = FileUploadUtils.fileUpload(uploadFile);
+            String fileName = FileUploadUtils.fileUpload(uploadFile);
+            int idImage = imageRepository.insertArticleImage(fileName);
+            article.setIdImage(idImage);
         }
 
-        int idImage = imageRepository.insertArticleImage(fileName);
         article.setWriterId(user.getId());
-        article.setIdImage(idImage);
         article.setId(articleRepository.articleInsert(article, user));
 
         return "redirect:/articles";
