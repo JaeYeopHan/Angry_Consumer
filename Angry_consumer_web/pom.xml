@@ -6,7 +6,7 @@
 	<groupId>com.ac</groupId>
 	<artifactId>angry_consumer_web</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 
 	<name>Angry_consumer_web</name>
 	<description>Angry Consumer Project</description>
@@ -25,11 +25,11 @@
 	</properties>
 
 	<dependencies>
-		<!--<dependency>-->
-		<!--<groupId>org.springframework.boot</groupId>-->
-		<!--<artifactId>spring-boot-starter-tomcat</artifactId>-->
-		<!--<scope>provided</scope>-->
-		<!--</dependency>-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>provided</scope>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
