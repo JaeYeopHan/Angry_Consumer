@@ -5,7 +5,6 @@
 .demo-card-wide > .mdl-card__title {
   color: #000;
   height: 176px;
-  background: url('/img/example_article.png') center / cover;
 }
 
 .demo-card-wide > .mdl-card__menu {
@@ -26,7 +25,10 @@
 
 /* article content */
 .mdl-card__title-text {
+  color: #fff;
   font-family: 'Hanna', fantasy;
+  height: 24px;
+  overflow: hidden;
 }
 
 .mdl-card__supporting-text {

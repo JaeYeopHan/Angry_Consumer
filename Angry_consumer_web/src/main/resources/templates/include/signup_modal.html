@@ -4,18 +4,18 @@
     <span class="modal-close"> <i class="fa fa-times"></i> </span>
     <div class="login-modal">
       <h4>Sign Up</h4>
-      <form action="#" method="post">
+      <form action="/users/create" method="post">
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-          <input class="mdl-textfield__input" type="email" id="newUserEmail" name="userEmail">
-          <label class="mdl-textfield__label" for="newUserEmail">Email</label>
+          <input class="mdl-textfield__input" type="email" id="email" name="email" autofocus>
+          <label class="mdl-textfield__label" for="email">Email</label>
         </div>
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-          <input class="mdl-textfield__input" type="password" id="newUserPassword" name="userPassword">
-          <label class="mdl-textfield__label" for="newUserPassword">Password</label>
+          <input class="mdl-textfield__input" type="password" id="password" name="password">
+          <label class="mdl-textfield__label" for="password">Password</label>
         </div>
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-          <input class="mdl-textfield__input" type="text" id="userName" name="userName">
-          <label class="mdl-textfield__label" for="userName">Name</label>
+          <input class="mdl-textfield__input" type="text" id="name" name="name">
+          <label class="mdl-textfield__label" for="name">Name</label>
         </div>
         <button type="submit" class="login-button button-style"> Submit</button>
       </form>

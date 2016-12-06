@@ -83,6 +83,7 @@
 
 .article-box-list img {
   height: 13.97em;
+  width: 20em;
   float: left;
   margin-right: 20px;
 }
@@ -90,6 +91,9 @@
 .article-title {
   padding-top: 20px;
   font-family: 'Hanna', fantasy;
+  width: 370px;
+  height: 24px;
+  overflow: hidden;
   font-size: 24px;
 }
 
@@ -100,7 +104,10 @@
   font-size: 14px;
   line-height: 0.1px;
 }
-
+.article-content-thumnail p {
+  height: 5em;
+  overflow: hidden;
+}
 .article-list-details {
   border-top: 1px solid #EBEBEB;
 }

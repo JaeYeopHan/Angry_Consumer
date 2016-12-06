@@ -76,6 +76,7 @@
   -moz-border-radius: 5px;
   border-radius: 5px;
   outline: none;
+  cursor: pointer;
 }
 
 .button-style a{
