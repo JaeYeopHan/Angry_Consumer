@@ -36,6 +36,16 @@ public class ArticleRepository {
         return jdbcTemplate.query(query, new ArticleRowMapper());
     }
 
+    public List<Article> getArticleListByQuery(String keyword) {
+        String query = "SELECT * FROM article WHERE title LIKE '%" + keyword + "%' OR contents LIKE '%" + keyword + "%' ORDER BY idArticle DESC";
+        return  jdbcTemplate.query(query, new ArticleRowMapper());
+    }
+
+    public List<Article> getArticleListByQueryOfRange(String keyword, String range) {
+        String query = "SELECT * FROM article WHERE " + range + " LIKE '%" + keyword + "%' ORDER BY idArticle DESC";
+        return  jdbcTemplate.query(query, new ArticleRowMapper());
+    }
+
     public int articleInsert(Article article, User user) {
         KeyHolder keyHolder = new GeneratedKeyHolder();
         String query = "INSERT INTO article(title, classify, contents, user_id, idImage) VALUES(?,?,?,(SELECT id FROM USER WHERE id = ?),?)";
