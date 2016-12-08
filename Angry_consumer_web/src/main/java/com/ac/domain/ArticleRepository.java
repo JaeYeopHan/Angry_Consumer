@@ -85,4 +85,9 @@ public class ArticleRepository {
         jdbcTemplate.update(query, article.getTitle(), article.getClassify(), article.getContents(), id);
     }
 
+    public void updateAgreeOfArticle(int id) {
+        String query = "UPDATE article SET agree = agree + 1 WHERE idArticle = ?";
+        jdbcTemplate.update(query, id);
+    }
+
 }

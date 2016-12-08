@@ -92,7 +92,7 @@ public class ArticleController {
 
     @DeleteMapping("/{id}")
     @ResponseBody
-    public String deleteArticle(@PathVariable int id, Model model, HttpSession session) {
+    public String deleteArticle(@PathVariable int id, HttpSession session) {
         Article article = CheckUserUtils.check(id, session, articleRepository, userRepository);
         articleRepository.deleteArticle(id);
         return "/articles";
@@ -125,5 +125,12 @@ public class ArticleController {
         ImageSettingUtils.settingImageToArticle(articleList, imageRepository);
         model.addAttribute("articles", articleList);
         return "/article/article_list";
+    }
+
+    @PutMapping("/{id}/agree")
+    @ResponseBody
+    public String updateAgreeOfArticle(@PathVariable int id) {
+        articleRepository.updateAgreeOfArticle(id);
+        return "이 글에 공감하셨습니다.";
     }
 }

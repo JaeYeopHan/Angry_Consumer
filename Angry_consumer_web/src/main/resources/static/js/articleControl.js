@@ -1,9 +1,25 @@
 $(document).ready(function () {
     var $deleteBtn = $('#deleteBtn')
     $deleteBtn.on('click', controlByBtn);
-    var $updateSubmitBtn = $('#updateSubmitBtn');
-    $updateSubmitBtn.on('click', submitUpdate);
+    var $agreeBtn = $('.agree-btn');
+    $agreeBtn.on('click', updateAgreeOfArticle);
 });
+
+function updateAgreeOfArticle(e) {
+    e.preventDefault();
+    var target = e.target;
+    var url = $(target).parent().attr('href');
+    $.ajax({
+        type: 'PUT',
+        url: url,
+        error: function(data) {
+            alert(data);
+        },
+        success: function(data) {
+            alert(data)
+        }
+    });
+}
 
 function controlByBtn(e) {
     e.preventDefault();
