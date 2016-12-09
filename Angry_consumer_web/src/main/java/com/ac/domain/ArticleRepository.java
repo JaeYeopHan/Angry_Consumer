@@ -90,4 +90,9 @@ public class ArticleRepository {
         jdbcTemplate.update(query, id);
     }
 
+    public void updateHitOfArticle(int id) {
+        String query = "update article SET hit = hit + 1 WHERE idArticle = ?";
+        jdbcTemplate.update(query, id);
+    }
+
 }

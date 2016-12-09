@@ -87,6 +87,8 @@ public class ArticleController {
             model.addAttribute("myArticle", article);
         }
 
+        articleRepository.updateHitOfArticle(id);
+
         return "/article/article_detail";
     }
 
