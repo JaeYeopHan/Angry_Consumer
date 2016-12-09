@@ -58,7 +58,6 @@ public class UserController {
 
         user.setGrade(userRepository.getUserGrade(user));
         session.setAttribute("sessionUser", user);
-        System.out.println("Login Complete!! " + session.getAttribute("sessionUser"));
 
         return "redirect:/";
     }
