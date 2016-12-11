@@ -99,4 +99,10 @@ public class ArticleRepository {
         String query = "UPDATE article SET countOfComment = countOfComment + 1 WHERE idArticle = ?";
         jdbcTemplate.update(query, id);
     }
+
+    public int getSumOfAgreeByUserId(int id) {
+        String query = "SELECT sum(agree) FROM article WHERE user_id = ?";
+        Integer result = jdbcTemplate.queryForObject(query, new Object[]{id}, Integer.class);
+        return result.intValue();
+    }
 }

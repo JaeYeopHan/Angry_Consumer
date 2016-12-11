@@ -1,10 +1,12 @@
 package com.ac.web;
 
+import com.ac.domain.ArticleRepository;
 import com.ac.domain.User;
 import com.ac.domain.UserRepository;
 import com.ac.util.HttpSessionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -20,6 +22,9 @@ import javax.servlet.http.HttpSession;
 public class UserController {
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private ArticleRepository articleRepository;
 
     @PostMapping("/create")
     public String signup(User user) {
@@ -63,11 +68,15 @@ public class UserController {
     }
 
     @GetMapping("/form")
-    public String updateForm(HttpSession session) {
+    public String updateForm(Model model, HttpSession session) {
         if (!HttpSessionUtils.isLoginUser(session)) {
             //로그인 모달 창 이벤트를 발생시키는게 더 좋지 않을까!
             return "redirect:/";
         }
+
+        User loginUser = HttpSessionUtils.getUserFromSession(session);
+        loginUser.setSumOfAgree(articleRepository.getSumOfAgreeByUserId(loginUser.getId()));
+        model.addAttribute("loginUser", loginUser);
         return "/user/user_info";
     }
 
@@ -89,7 +98,6 @@ public class UserController {
         sessionUser.setName(name);
         userRepository.userInfoUpdate(sessionUser);
         System.out.println("Complete to Change only name");
-        //완료되었다는 팝업창을 띄우고 싶다.
         return "redirect:/users/form";
     }
 }

@@ -9,6 +9,7 @@ public class User {
     private String email;
     private String password;
     private String grade;
+    private int sumOfAgree;
 
     public int getId() {
         return id;
@@ -48,6 +49,14 @@ public class User {
 
     public void setGrade(String grade) {
         this.grade = grade;
+    }
+
+    public int getSumOfAgree() {
+        return sumOfAgree;
+    }
+
+    public void setSumOfAgree(int sumOfAgree) {
+        this.sumOfAgree = sumOfAgree;
     }
 
     @Override
