@@ -95,4 +95,8 @@ public class ArticleRepository {
         jdbcTemplate.update(query, id);
     }
 
+    public void updateCountOfComment(int id) {
+        String query = "UPDATE article SET countOfComment = countOfComment + 1 WHERE idArticle = ?";
+        jdbcTemplate.update(query, id);
+    }
 }

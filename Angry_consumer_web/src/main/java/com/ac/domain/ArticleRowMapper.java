@@ -18,6 +18,7 @@ public final class ArticleRowMapper implements RowMapper<Article> {
         article.setClassify(rs.getString("classify"));
         article.setHit(rs.getInt("hit"));
         article.setAgree(rs.getInt("agree"));
+        article.setCountOfComment(rs.getInt("countOfComment"));
         article.setWriterId(rs.getInt("user_id"));
         article.setCreateDate(rs.getDate("create_date"));
         article.setIdImage(rs.getInt("idImage"));

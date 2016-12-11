@@ -1,5 +1,6 @@
 package com.ac.web;
 
+import com.ac.domain.ArticleRepository;
 import com.ac.domain.Comment;
 import com.ac.domain.CommentRepository;
 import com.ac.domain.User;
@@ -21,10 +22,14 @@ public class CommentController {
     @Autowired
     private CommentRepository commentRepository;
 
+    @Autowired
+    private ArticleRepository articleRepository;
+
     @PostMapping("/{id}")
     public String createComment(@PathVariable int id, Comment comment, HttpSession session) {
         User loginUser = HttpSessionUtils.getUserFromSession(session);
         commentRepository.insertComment(comment, loginUser.getId(), id);
+        articleRepository.updateCountOfComment(id);
         return "redirect:/articles/" + id;
     }
 }
