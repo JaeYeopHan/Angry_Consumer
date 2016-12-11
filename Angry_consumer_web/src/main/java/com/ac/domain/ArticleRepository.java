@@ -46,7 +46,7 @@ public class ArticleRepository {
         return  jdbcTemplate.query(query, new ArticleRowMapper());
     }
 
-    public int articleInsert(Article article, User user) {
+    public int insertArticle(Article article, User user) {
         KeyHolder keyHolder = new GeneratedKeyHolder();
         String query = "INSERT INTO article(title, classify, contents, user_id, idImage) VALUES(?,?,?,(SELECT id FROM USER WHERE id = ?),?)";
         jdbcTemplate.update(new PreparedStatementCreator() {
