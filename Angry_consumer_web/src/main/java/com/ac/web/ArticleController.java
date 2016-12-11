@@ -30,6 +30,9 @@ public class ArticleController {
     @Autowired
     private ImageRepository imageRepository;
 
+    @Autowired
+    private CommentRepository commentRepository;
+
     @GetMapping("")
     public String listPage(Model model) {
         List<Article> articleList = articleRepository.getArticleList();
@@ -59,7 +62,7 @@ public class ArticleController {
         }
 
         article.setWriterId(user.getId());
-        article.setId(articleRepository.articleInsert(article, user));
+        article.setId(articleRepository.insertArticle(article, user));
 
         return "redirect:/articles";
     }
@@ -86,6 +89,16 @@ public class ArticleController {
         if (sessionedUser.equals(articleWriter)) {
             model.addAttribute("myArticle", article);
         }
+
+        List<Comment> commentList = commentRepository.getListOfComments(id);
+        for(Comment comment : commentList) {
+            int writerId = comment.getWriterId();
+            User user = userRepository.findUserById(writerId);
+            user.setGrade(userRepository.getUserGrade(user));
+            comment.settingWriter(user);
+        }
+
+        model.addAttribute("comment", commentList);
 
         articleRepository.updateHitOfArticle(id);
 
