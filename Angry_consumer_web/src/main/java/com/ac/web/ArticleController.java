@@ -1,8 +1,10 @@
 package com.ac.web;
 
 import com.ac.domain.*;
+import com.ac.util.CheckUserUtils;
 import com.ac.util.FileUploadUtils;
 import com.ac.util.HttpSessionUtils;
+import com.ac.util.ImageSettingUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,16 +30,13 @@ public class ArticleController {
     @Autowired
     private ImageRepository imageRepository;
 
+    @Autowired
+    private CommentRepository commentRepository;
+
     @GetMapping("")
     public String listPage(Model model) {
         List<Article> articleList = articleRepository.getArticleList();
-
-        for(Article article : articleList) {
-            int imageId = article.getIdImage();
-            String fileName = imageRepository.getArticleImagePathById(imageId);
-            article.setFileName(fileName);
-        }
-
+        ImageSettingUtils.settingImageToArticle(articleList, imageRepository);
         model.addAttribute("articles", articleList);
         return "/article/article_list";
     }
@@ -63,7 +62,7 @@ public class ArticleController {
         }
 
         article.setWriterId(user.getId());
-        article.setId(articleRepository.articleInsert(article, user));
+        article.setId(articleRepository.insertArticle(article, user));
 
         return "redirect:/articles";
     }
@@ -91,28 +90,32 @@ public class ArticleController {
             model.addAttribute("myArticle", article);
         }
 
+        List<Comment> commentList = commentRepository.getListOfComments(id);
+        for(Comment comment : commentList) {
+            int writerId = comment.getWriterId();
+            User user = userRepository.findUserById(writerId);
+            user.setGrade(userRepository.getUserGrade(user));
+            comment.settingWriter(user);
+        }
+
+        model.addAttribute("comment", commentList);
+
+        articleRepository.updateHitOfArticle(id);
+
         return "/article/article_detail";
     }
 
     @DeleteMapping("/{id}")
     @ResponseBody
-    public String deleteArticle(@PathVariable int id, Model model, HttpSession session) {
-        Article article = articleRepository.getArticleByArticleId(id);
-        User user = userRepository.findUserById(article.getWriterId());
-        if (!user.equals(HttpSessionUtils.getUserFromSession(session))) {
-            throw new IllegalStateException("자신의 글만 삭제할 수 있습니다.");
-        }
+    public String deleteArticle(@PathVariable int id, HttpSession session) {
+        Article article = CheckUserUtils.check(id, session, articleRepository, userRepository);
         articleRepository.deleteArticle(id);
         return "/articles";
     }
 
     @GetMapping("/{id}/form")
     public String articleUpdateForm(@PathVariable int id, Model model, HttpSession session) {
-        Article article = articleRepository.getArticleByArticleId(id);
-        User user = userRepository.findUserById(article.getWriterId());
-        if (!user.equals(HttpSessionUtils.getUserFromSession(session))) {
-            throw new IllegalStateException("자신의 글만 수정할 수 있습니다.");
-        }
+        Article article = CheckUserUtils.check(id, session, articleRepository, userRepository);
         model.addAttribute("article", article);
         return "article/article_update_form";
     }
@@ -120,12 +123,29 @@ public class ArticleController {
     //추후 PutMapping으로 수정!
     @PostMapping("/{id}/update")
     public String updateArticle(@PathVariable int id, Article updatedArticle, HttpSession session) {
-        Article article = articleRepository.getArticleByArticleId(id);
-        User user = userRepository.findUserById(article.getWriterId());
-        if (!user.equals(HttpSessionUtils.getUserFromSession(session))) {
-            throw new IllegalStateException("자신의 글만 수정할 수 있습니다.");
-        }
+        Article article = CheckUserUtils.check(id, session, articleRepository, userRepository);
         articleRepository.updateArticle(updatedArticle, article.getId());
         return "redirect:/articles/" + id;
+    }
+
+    @GetMapping("/search")
+    public String searchArticle(@RequestParam("query") String query, @RequestParam("searchRange") String searchRange, Model model) {
+        List<Article> articleList;
+        if(searchRange.equals("ALL")) {
+            articleList = articleRepository.getArticleListByQuery(query);
+        } else {
+            articleList = articleRepository.getArticleListByQueryOfRange(query, searchRange);
+        }
+
+        ImageSettingUtils.settingImageToArticle(articleList, imageRepository);
+        model.addAttribute("articles", articleList);
+        return "/article/article_list";
+    }
+
+    @PutMapping("/{id}/agree")
+    @ResponseBody
+    public String updateAgreeOfArticle(@PathVariable int id) {
+        articleRepository.updateAgreeOfArticle(id);
+        return "이 글에 공감하셨습니다.";
     }
 }

@@ -54,35 +54,35 @@
       </p>
     </div>
     <div class="article-detail-reaction">
-      <i class="fa fa-heart"></i>
+      <a href="/articles/{{id}}/agree" class="agree-btn">
+        <i class="fa fa-heart"></i>
+      </a>
     </div>
   </div>
-  {{/article}}
   </div>
   <div class="article-comment-label">
     <p>지원사격 또는 반대하기</p>
   </div>
 
   <div class="article-comment-box">
-    <form action="#">
+    <form action="/comment/{{id}}" method="POST">
       <div class="mdl-textfield mdl-js-textfield comment-input">
-        <textarea class="mdl-textfield__input" type="text" rows= "2" id="sample5" ></textarea>
-        <label class="mdl-textfield__label" for="sample5">의견을 입력해주세요!</label>
+        <textarea class="mdl-textfield__input" type="text" rows= "2" id="comment" name="commentContent"></textarea>
+        <label class="mdl-textfield__label" for="comment">의견을 입력해주세요!</label>
       </div>
         <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent comment-submit-button">
           완료
         </button>
     </form>
   </div>
+  {{/article}}
   <div class="article-comment-lists">
+    {{#comment}}
     <div class="article-comment-list">
-      <p><span class="user-class">{명사수}</span><span class="user-name">한재엽</span></p>
-      <p>맞아요 여기 별로에요~</p>
+      <p style="font-weight: bolder;"><span style="padding-right: 16px;">{{writer.grade}}</span><span>{{writer.name}}</span></p>
+      <p>{{commentContent}}</p>
     </div>
-    <div class="article-comment-list">
-      <p><span>{명사수}</span><span>한재엽</span></p>
-      <p>맞아요 여기 별로에요~</p>
-    </div>
+    {{/comment}}
   </div>
 </div>
 

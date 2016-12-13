@@ -46,9 +46,16 @@
   {{> /include/signup_modal}}
 
   <div class="main-searchbar main-center-align">
-    <label for="searchValue"></label>
-    <input type="text" placeholder="저격글을 검색하세요!" id="searchValue" name="searchValue" autofocus/>
-    <button>검 색</button>
+    <form action="/articles/search" method="GET">
+      <select name="searchRange">
+        <option value="ALL">전체</option>
+        <option value="title">제목</option>
+        <option value="contents">내용</option>
+      </select>
+      <label for="searchValue"></label>
+      <input type="text" placeholder="저격글을 검색하세요!" id="searchValue" name="query" autofocus/>
+      <button type="submit">검 색</button>
+    </form>
   </div>
 
   <div class="main-content">

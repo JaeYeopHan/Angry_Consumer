@@ -15,11 +15,11 @@
   <div class="user_info_box">
     <div class="profile_image">
     </div>
-    {{#sessionUser}}
+    {{#loginUser}}
     <div class="user_id">
       <p>{{email}}</p>
       <p>{{grade}}</p>
-      <p>총 0개의 공감을 받으셨습니다!</p>
+      <p>총 <span style="font-weight: bolder; color: #000;">{{sumOfAgree}}개</span>의 공감을 받으셨습니다!</p>
     </div>
     <form action="/users/form" method="post">
       <input type="hidden" name="_method" value="put"/>
@@ -45,7 +45,7 @@
         수정
       </button>
     </form>
-    {{/sessionUser}}
+    {{/loginUser}}
 
   </div>
 </div>

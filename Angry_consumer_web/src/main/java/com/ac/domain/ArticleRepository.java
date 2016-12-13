@@ -36,7 +36,17 @@ public class ArticleRepository {
         return jdbcTemplate.query(query, new ArticleRowMapper());
     }
 
-    public int articleInsert(Article article, User user) {
+    public List<Article> getArticleListByQuery(String keyword) {
+        String query = "SELECT * FROM article WHERE title LIKE '%" + keyword + "%' OR contents LIKE '%" + keyword + "%' ORDER BY idArticle DESC";
+        return  jdbcTemplate.query(query, new ArticleRowMapper());
+    }
+
+    public List<Article> getArticleListByQueryOfRange(String keyword, String range) {
+        String query = "SELECT * FROM article WHERE " + range + " LIKE '%" + keyword + "%' ORDER BY idArticle DESC";
+        return  jdbcTemplate.query(query, new ArticleRowMapper());
+    }
+
+    public int insertArticle(Article article, User user) {
         KeyHolder keyHolder = new GeneratedKeyHolder();
         String query = "INSERT INTO article(title, classify, contents, user_id, idImage) VALUES(?,?,?,(SELECT id FROM USER WHERE id = ?),?)";
         jdbcTemplate.update(new PreparedStatementCreator() {
@@ -75,4 +85,24 @@ public class ArticleRepository {
         jdbcTemplate.update(query, article.getTitle(), article.getClassify(), article.getContents(), id);
     }
 
+    public void updateAgreeOfArticle(int id) {
+        String query = "UPDATE article SET agree = agree + 1 WHERE idArticle = ?";
+        jdbcTemplate.update(query, id);
+    }
+
+    public void updateHitOfArticle(int id) {
+        String query = "update article SET hit = hit + 1 WHERE idArticle = ?";
+        jdbcTemplate.update(query, id);
+    }
+
+    public void updateCountOfComment(int id) {
+        String query = "UPDATE article SET countOfComment = countOfComment + 1 WHERE idArticle = ?";
+        jdbcTemplate.update(query, id);
+    }
+
+    public int getSumOfAgreeByUserId(int id) {
+        String query = "SELECT sum(agree) FROM article WHERE user_id = ?";
+        Integer result = jdbcTemplate.queryForObject(query, new Object[]{id}, Integer.class);
+        return result.intValue();
+    }
 }
