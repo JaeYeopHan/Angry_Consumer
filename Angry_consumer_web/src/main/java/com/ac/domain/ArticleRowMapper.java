@@ -11,17 +11,7 @@ import java.sql.SQLException;
 public final class ArticleRowMapper implements RowMapper<Article> {
     @Override
     public Article mapRow(ResultSet rs, int rowNum) throws SQLException {
-        Article article = new Article();
-        article.setId(rs.getInt("idArticle"));
-        article.setTitle(rs.getString("title"));
-        article.setContents(rs.getString("contents"));
-        article.setClassify(rs.getString("classify"));
-        article.setHit(rs.getInt("hit"));
-        article.setAgree(rs.getInt("agree"));
-        article.setCountOfComment(rs.getInt("countOfComment"));
-        article.setWriterId(rs.getInt("user_id"));
-        article.setCreateDate(rs.getDate("create_date"));
-        article.setIdImage(rs.getInt("idImage"));
+        Article article = new Article(rs);
         return article;
     }
 }

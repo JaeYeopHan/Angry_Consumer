@@ -13,11 +13,7 @@ public class CommentRowMapper implements RowMapper {
 
     @Override
     public Object mapRow(ResultSet rs, int i) throws SQLException {
-        Comment comment = new Comment();
-        comment.setId(rs.getInt("idComment"));
-        comment.setArticleId(rs.getInt("Article_idArticle"));
-        comment.setWriterId(rs.getInt("User_id"));
-        comment.setCommentContent(rs.getString("content"));
+        Comment comment = new Comment(rs);
         return comment;
     }
 }

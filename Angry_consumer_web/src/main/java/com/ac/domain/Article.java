@@ -2,6 +2,8 @@ package com.ac.domain;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Date;
 
 /**
@@ -21,6 +23,19 @@ public class Article {
     private MultipartFile uploadFile;
     private String fileName;
     private int idImage;
+
+    public Article(ResultSet rs) throws SQLException {
+        this.id = rs.getInt("idArticle");
+        this.title = rs.getString("title");
+        this.contents = rs.getString("contents");
+        this.classify = rs.getString("classify");
+        this.hit = rs.getInt("hit");
+        this.agree = rs.getInt("agree");
+        this.countOfComment = rs.getInt("countOfComment");
+        this.writerId = rs.getInt("user_id");
+        this.createDate = rs.getDate("create_date");
+        this.idImage = rs.getInt("idImage");
+    }
 
     public int getId() {
         return id;

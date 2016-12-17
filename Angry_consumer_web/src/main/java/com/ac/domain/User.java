@@ -1,5 +1,8 @@
 package com.ac.domain;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 /**
  * Created by Jbee on 2016. 10. 19..
  */
@@ -10,6 +13,13 @@ public class User {
     private String password;
     private String grade;
     private int sumOfAgree;
+
+    public User (ResultSet rs) throws SQLException {
+        this.id = rs.getInt("id");
+        this.name = rs.getString("name");
+        this.email = rs.getString("email");
+        this.password = rs.getString("password");
+    }
 
     public int getId() {
         return id;
