@@ -33,6 +33,8 @@ public class ArticleController {
     @Autowired
     private CommentRepository commentRepository;
 
+    private static final String ALL_RANGE_SEARCH = "ALL";
+
     @GetMapping("")
     public String listPage(Model model) {
         List<Article> articleList = articleRepository.getArticleList();
@@ -131,7 +133,7 @@ public class ArticleController {
     @GetMapping("/search")
     public String searchArticle(@RequestParam("query") String query, @RequestParam("searchRange") String searchRange, Model model) {
         List<Article> articleList;
-        if(searchRange.equals("ALL")) {
+        if(searchRange.equals(ALL_RANGE_SEARCH)) {
             articleList = articleRepository.getArticleListByQuery(query);
         } else {
             articleList = articleRepository.getArticleListByQueryOfRange(query, searchRange);
