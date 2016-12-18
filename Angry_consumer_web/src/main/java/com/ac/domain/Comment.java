@@ -13,6 +13,8 @@ public class Comment {
     private User writer;
     private String commentContent;
 
+    public Comment(){}
+    
     public Comment (ResultSet rs) throws SQLException {
         this.id = rs.getInt("idComment");
         this.articleId = rs.getInt("Article_idArticle");

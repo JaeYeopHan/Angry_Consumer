@@ -24,6 +24,8 @@ public class Article {
     private String fileName;
     private int idImage;
 
+    public Article(){}
+
     public Article(ResultSet rs) throws SQLException {
         this.id = rs.getInt("idArticle");
         this.title = rs.getString("title");
