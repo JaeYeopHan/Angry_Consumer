@@ -83,21 +83,15 @@ public class UserController {
     @PutMapping("/form")
     public String update(String name, String password, String passwordForConfirm, HttpSession session){
         User sessionUser = HttpSessionUtils.getUserFromSession(session);
-        System.out.println(password + ", " + passwordForConfirm);
         if(password != ""){
             if(password.equals(passwordForConfirm)){
-                sessionUser.setName(name);
-                sessionUser.setPassword(password);
+                sessionUser.updateUserInfo(name, password);
                 userRepository.userInfoUpdate(sessionUser);
-                System.out.println("Complete to Change name and password");
                 return "redirect:/users/form";
-            } else {
-                System.out.println("different password and password for confirm");
             }
         }
-        sessionUser.setName(name);
+        sessionUser.updateUserInfo(name);
         userRepository.userInfoUpdate(sessionUser);
-        System.out.println("Complete to Change only name");
         return "redirect:/users/form";
     }
 }
