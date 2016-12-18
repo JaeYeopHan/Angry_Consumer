@@ -33,6 +33,8 @@
 
 .mdl-card__supporting-text {
   font-family: 'Nanum Gothicm';
+  height: 60px;
+  overflow: hidden;
 }
 
 .mdl-button {
