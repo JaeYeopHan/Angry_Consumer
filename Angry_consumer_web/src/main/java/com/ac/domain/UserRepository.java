@@ -34,18 +34,12 @@ public class UserRepository {
         return jdbcTemplate.update(query, user.getName(), user.getPassword(), user.getEmail());
     }
 
-    public String getUserGrade(User user) {
-        String query = "SELECT g.grade_name FROM USER AS u INNER JOIN grade AS g ON u.Grade_idGrade = g.idGrade WHERE id = ?";
-        return jdbcTemplate.queryForObject(query, new Object[]{user.getId()}, new RowMapper<String>() {
-            @Override
-            public String mapRow(ResultSet resultSet, int i) throws SQLException {
-                return resultSet.getString("g.grade_name");
-            }
-        });
-    }
-
     public User findUserByEmail(String email) {
-        String query = "SELECT * FROM user WHERE email=?";
+        String query = "SELECT u.*, g.grade_name\n" +
+                       "FROM user AS u\n" +
+                       "INNER JOIN grade AS g\n" +
+                       "ON u.Grade_idGrade = g.idGrade\n" +
+                       "WHERE email = ?";
         User resultUser;
         try {
             resultUser = jdbcTemplate.queryForObject(query, new Object[]{email}, new UserRowMapper());
@@ -57,7 +51,11 @@ public class UserRepository {
     }
 
     public User findUserByName(String name) {
-        String query = "SELECT * FROM user WHERE name=?";
+        String query = "SELECT u.*, g.grade_name\n" +
+                       "FROM user AS u\n" +
+                       "INNER JOIN grade AS g\n" +
+                       "ON u.Grade_idGrade = g.idGrade\n" +
+                       "WHERE name = ?";
         User resultUser;
         try {
             resultUser = jdbcTemplate.queryForObject(query, new Object[]{name}, new UserRowMapper());
@@ -68,7 +66,11 @@ public class UserRepository {
     }
 
     public User findUserById(int id) {
-        String query = "SELECT * FROM user WHERE id=?";
+        String query = "SELECT u.*, g.grade_name\n" +
+                       "FROM user AS u\n" +
+                       "INNER JOIN grade AS g\n" +
+                       "ON u.Grade_idGrade = g.idGrade\n" +
+                       "WHERE id = ?";
         User resultUser;
         try {
             resultUser = jdbcTemplate.queryForObject(query, new Object[]{id}, new UserRowMapper());

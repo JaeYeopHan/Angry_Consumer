@@ -78,7 +78,6 @@ public class ArticleController {
 
         Article article = articleRepository.getArticleByArticleId(id);
         User articleWriter = userRepository.findUserById(article.getWriterId());
-        articleWriter.setGrade(userRepository.getUserGrade(articleWriter));
         article.setWriter(articleWriter);
 
         model.addAttribute("article", article);
@@ -90,7 +89,6 @@ public class ArticleController {
         for(Comment comment : commentList) {
             int writerId = comment.getWriterId();
             User user = userRepository.findUserById(writerId);
-            user.setGrade(userRepository.getUserGrade(user));
             comment.settingWriter(user);
         }
 

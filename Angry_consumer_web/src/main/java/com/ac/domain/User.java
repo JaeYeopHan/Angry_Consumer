@@ -21,6 +21,7 @@ public class User {
         this.name = rs.getString("name");
         this.email = rs.getString("email");
         this.password = rs.getString("password");
+        this.grade = rs.getString("grade_name");
     }
 
     public int getId() {

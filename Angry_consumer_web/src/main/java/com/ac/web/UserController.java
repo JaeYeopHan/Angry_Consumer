@@ -61,7 +61,6 @@ public class UserController {
             return "redirect:/";
         }
 
-        user.setGrade(userRepository.getUserGrade(user));
         session.setAttribute("sessionUser", user);
 
         return "redirect:/";
