@@ -3,7 +3,6 @@ package com.ac.web;
 import com.ac.domain.Article;
 import com.ac.domain.ArticleRepository;
 import com.ac.domain.ImageRepository;
-import com.ac.util.ImageSettingUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,7 +27,6 @@ public class MainController {
     @GetMapping("")
     public String mainPage(Model model) {
         List<Article> articleList = articleRepository.getArticleListCountOfSix();
-        ImageSettingUtils.settingImageToArticle(articleList, imageRepository);
         model.addAttribute("articles", articleList);
         return "index";
     }

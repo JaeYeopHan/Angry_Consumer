@@ -27,22 +27,40 @@ public class ArticleRepository {
     }
 
     public List<Article> getArticleList() {
-        String query = "SELECT * FROM article ORDER BY idArticle DESC";
+        String query = "SELECT a.*, i.path\n" +
+                       "FROM article AS a\n" +
+                       "INNER JOIN image AS i\n" +
+                       "ON i.idImage = a.idImage\n" +
+                       "ORDER BY idArticle DESC";
         return jdbcTemplate.query(query, new ArticleRowMapper());
     }
 
     public List<Article> getArticleListCountOfSix() {
-        String query = "SELECT * FROM article ORDER BY idArticle DESC LIMIT 6";
+        String query = "SELECT a.*, i.path\n" +
+                       "FROM article AS a\n" +
+                       "INNER JOIN image AS i\n" +
+                       "ON i.idImage = a.idImage\n" +
+                       "ORDER BY idArticle DESC LIMIT 6";
         return jdbcTemplate.query(query, new ArticleRowMapper());
     }
 
     public List<Article> getArticleListByQuery(String keyword) {
-        String query = "SELECT * FROM article WHERE title LIKE '%" + keyword + "%' OR contents LIKE '%" + keyword + "%' ORDER BY idArticle DESC";
+        String query = "SELECT a.*, i.path\n" +
+                       "FROM article AS a\n" +
+                       "INNER JOIN image AS i\n" +
+                       "ON i.idImage = a.idImage\n" +
+                       "WHERE title LIKE '%" + keyword + "%' OR contents LIKE '%" + keyword + "%'\n" +
+                       "ORDER BY idArticle DESC";
         return  jdbcTemplate.query(query, new ArticleRowMapper());
     }
 
     public List<Article> getArticleListByQueryOfRange(String keyword, String range) {
-        String query = "SELECT * FROM article WHERE " + range + " LIKE '%" + keyword + "%' ORDER BY idArticle DESC";
+        String query = "SELECT a.*, i.path\n" +
+                       "FROM article AS a\n" +
+                       "INNER JOIN image AS i\n" +
+                       "ON i.idImage = a.idImage\n" +
+                       "WHERE " + range + " LIKE '%" + keyword + "%'\n" +
+                       "ORDER BY idArticle DESC";
         return  jdbcTemplate.query(query, new ArticleRowMapper());
     }
 
@@ -65,7 +83,11 @@ public class ArticleRepository {
     }
 
     public Article getArticleByArticleId(int idArticle) {
-        String query = "SELECT * FROM article WHERE idArticle = ?";
+        String query = "SELECT a.*, i.path\n" +
+                       "FROM article AS a\n" +
+                       "INNER JOIN image AS i\n" +
+                       "ON i.idImage = a.idImage\n" +
+                       "WHERE idArticle = ?";
         Article resultArticle;
         try {
             resultArticle = jdbcTemplate.queryForObject(query, new Object[]{idArticle}, new ArticleRowMapper());

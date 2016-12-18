@@ -37,6 +37,7 @@ public class Article {
         this.writerId = rs.getInt("user_id");
         this.createDate = rs.getDate("create_date");
         this.idImage = rs.getInt("idImage");
+        this.fileName = rs.getString("path");
     }
 
     public int getId() {

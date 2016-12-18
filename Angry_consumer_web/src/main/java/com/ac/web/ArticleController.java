@@ -4,7 +4,6 @@ import com.ac.domain.*;
 import com.ac.util.CheckUserUtils;
 import com.ac.util.FileUploadUtils;
 import com.ac.util.HttpSessionUtils;
-import com.ac.util.ImageSettingUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -38,7 +37,6 @@ public class ArticleController {
     @GetMapping("")
     public String listPage(Model model) {
         List<Article> articleList = articleRepository.getArticleList();
-        ImageSettingUtils.settingImageToArticle(articleList, imageRepository);
         model.addAttribute("articles", articleList);
         return "/article/article_list";
     }
@@ -82,10 +80,6 @@ public class ArticleController {
         User articleWriter = userRepository.findUserById(article.getWriterId());
         articleWriter.setGrade(userRepository.getUserGrade(articleWriter));
         article.setWriter(articleWriter);
-
-        int imageId = article.getIdImage();
-        String fileName = imageRepository.getArticleImagePathById(imageId);
-        article.setFileName(fileName);
 
         model.addAttribute("article", article);
         if (sessionedUser.equals(articleWriter)) {
@@ -139,7 +133,6 @@ public class ArticleController {
             articleList = articleRepository.getArticleListByQueryOfRange(query, searchRange);
         }
 
-        ImageSettingUtils.settingImageToArticle(articleList, imageRepository);
         model.addAttribute("articles", articleList);
         return "/article/article_list";
     }
