@@ -12,6 +12,8 @@ public class Comment {
     private int writerId;
     private User writer;
     private String commentContent;
+    private String userName;
+    private String userGrade;
 
     public Comment(){}
     
@@ -20,6 +22,8 @@ public class Comment {
         this.articleId = rs.getInt("Article_idArticle");
         this.writerId = rs.getInt("User_id");
         this.commentContent = rs.getString("content");
+        this.userName = rs.getString("name");
+        this.userGrade = rs.getString("grade_name");
     }
 
     public int getId() {
@@ -64,6 +68,22 @@ public class Comment {
 
     public void settingWriter(User writer) {
         this.writer = writer;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getUserGrade() {
+        return userGrade;
+    }
+
+    public void setUserGrade(String userGrade) {
+        this.userGrade = userGrade;
     }
 
     @Override

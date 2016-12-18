@@ -19,7 +19,13 @@ public class CommentRepository {
     }
 
     public List<Comment> getListOfComments(int id) {
-        String query = "SELECT * FROM comment WHERE Article_idArticle = "+ id +" ORDER BY idComment ASC";
+        String query = "SELECT c.idComment, c.Article_idArticle, c.User_id, c.content, u.name, g.grade_name\n" +
+                "FROM comment AS c\n" +
+                "INNER JOIN user AS u\n" +
+                "INNER JOIN grade AS g\n" +
+                "ON u.id = c.user_id AND u.Grade_idGrade = g.idGrade\n" +
+                "WHERE c.Article_idArticle = " + id + "\n" +
+                "ORDER BY idComment ASC";
         return jdbcTemplate.query(query, new CommentRowMapper());
     }
 

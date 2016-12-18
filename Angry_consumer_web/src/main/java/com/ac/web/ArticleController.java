@@ -75,7 +75,6 @@ public class ArticleController {
         }
 
         User sessionedUser = HttpSessionUtils.getUserFromSession(session);
-
         Article article = articleRepository.getArticleByArticleId(id);
         User articleWriter = userRepository.findUserById(article.getWriterId());
         article.setWriter(articleWriter);
@@ -86,14 +85,7 @@ public class ArticleController {
         }
 
         List<Comment> commentList = commentRepository.getListOfComments(id);
-        for(Comment comment : commentList) {
-            int writerId = comment.getWriterId();
-            User user = userRepository.findUserById(writerId);
-            comment.settingWriter(user);
-        }
-
         model.addAttribute("comment", commentList);
-
         articleRepository.updateHitOfArticle(id);
 
         return "/article/article_detail";
@@ -114,7 +106,6 @@ public class ArticleController {
         return "article/article_update_form";
     }
 
-    //추후 PutMapping으로 수정!
     @PostMapping("/{id}/update")
     public String updateArticle(@PathVariable int id, Article updatedArticle, HttpSession session) {
         Article article = CheckUserUtils.check(id, session, articleRepository, userRepository);
