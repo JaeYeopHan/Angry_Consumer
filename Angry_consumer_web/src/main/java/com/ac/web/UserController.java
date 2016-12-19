@@ -61,6 +61,9 @@ public class UserController {
             return "redirect:/";
         }
 
+        int userId = user.getId();
+        userRepository.callStoredProcedure(userId);
+        user = userRepository.findUserById(userId);
         session.setAttribute("sessionUser", user);
 
         return "redirect:/";
