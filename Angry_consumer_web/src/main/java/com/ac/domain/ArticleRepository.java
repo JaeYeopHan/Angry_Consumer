@@ -26,15 +26,6 @@ public class ArticleRepository {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public List<Article> getArticleList() {
-        String query = "SELECT a.*, i.path\n" +
-                       "FROM article AS a\n" +
-                       "INNER JOIN image AS i\n" +
-                       "ON i.idImage = a.idImage\n" +
-                       "ORDER BY idArticle DESC";
-        return jdbcTemplate.query(query, new ArticleRowMapper());
-    }
-
     public List<Article> getArticleListCountOfSix() {
         String query = "SELECT a.*, i.path\n" +
                        "FROM article AS a\n" +
@@ -62,6 +53,20 @@ public class ArticleRepository {
                        "WHERE " + range + " LIKE '%" + keyword + "%'\n" +
                        "ORDER BY idArticle DESC";
         return  jdbcTemplate.query(query, new ArticleRowMapper());
+    }
+
+    public List<Article> getArticleListByPage(int pageNum) {
+        String query = "SELECT a.*, i.path\n" +
+                       "FROM article AS a\n" +
+                       "INNER JOIN image AS i\n" +
+                       "ON i.idImage = a.idImage\n" +
+                       "ORDER BY idArticle DESC LIMIT " + pageNum + ", 10";
+        return jdbcTemplate.query(query, new ArticleRowMapper());
+    }
+
+    public int getSumOfArticle() {
+        String query = "SELECT count(*) FROM article";
+        return jdbcTemplate.queryForObject(query, new Object[]{}, Integer.class);
     }
 
     public int insertArticle(Article article, User user) {
@@ -124,7 +129,6 @@ public class ArticleRepository {
 
     public int getSumOfAgreeByUserId(int id) {
         String query = "SELECT sum(agree) FROM article WHERE user_id = ?";
-        Integer result = jdbcTemplate.queryForObject(query, new Object[]{id}, Integer.class);
-        return result.intValue();
+        return jdbcTemplate.queryForObject(query, new Object[]{id}, Integer.class);
     }
 }

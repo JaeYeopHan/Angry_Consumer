@@ -4,6 +4,7 @@ import com.ac.domain.*;
 import com.ac.util.CheckUserUtils;
 import com.ac.util.FileUploadUtils;
 import com.ac.util.HttpSessionUtils;
+import com.ac.util.PageUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +21,9 @@ import java.util.List;
 @Controller
 @RequestMapping("/articles")
 public class ArticleController {
+
+    private static final String ALL_RANGE_SEARCH = "ALL";
+
     @Autowired
     private ArticleRepository articleRepository;
 
@@ -32,12 +36,13 @@ public class ArticleController {
     @Autowired
     private CommentRepository commentRepository;
 
-    private static final String ALL_RANGE_SEARCH = "ALL";
-
-    @GetMapping("")
-    public String listPage(Model model) {
-        List<Article> articleList = articleRepository.getArticleList();
+    @GetMapping("/page/{id}")
+    public String paging(@PathVariable int id, Model model) {
+        PageUtils.pageSetting(articleRepository);
+        int pageNum = PageUtils.getCountOfPage(id);
+        List<Article> articleList = articleRepository.getArticleListByPage(pageNum);
         model.addAttribute("articles", articleList);
+        model.addAttribute("pages", PageUtils.pageList);
         return "/article/article_list";
     }
 
@@ -64,7 +69,7 @@ public class ArticleController {
         article.setWriterId(user.getId());
         article.setId(articleRepository.insertArticle(article, user));
 
-        return "redirect:/articles";
+        return "redirect:/articles/page/1";
     }
 
     @GetMapping("/{id}")
@@ -96,7 +101,7 @@ public class ArticleController {
     public String deleteArticle(@PathVariable int id, HttpSession session) {
         Article article = CheckUserUtils.check(id, session, articleRepository, userRepository);
         articleRepository.deleteArticle(id);
-        return "/articles";
+        return "/articles/page/1";
     }
 
     @GetMapping("/{id}/form")
@@ -116,7 +121,7 @@ public class ArticleController {
     @GetMapping("/search")
     public String searchArticle(@RequestParam("query") String query, @RequestParam("searchRange") String searchRange, Model model) {
         List<Article> articleList;
-        if(searchRange.equals(ALL_RANGE_SEARCH)) {
+        if (searchRange.equals(ALL_RANGE_SEARCH)) {
             articleList = articleRepository.getArticleListByQuery(query);
         } else {
             articleList = articleRepository.getArticleListByQueryOfRange(query, searchRange);
