@@ -74,7 +74,7 @@ public class ArticleRepository {
         return jdbcTemplate.query(query, new ArticleRowMapper());
     }
 
-    public int getSumOfArticle() {
+    public int getcountOfAllArticle() {
         String query = "SELECT count(*) FROM article";
         return jdbcTemplate.queryForObject(query, new Object[]{}, Integer.class);
     }

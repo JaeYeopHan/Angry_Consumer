@@ -43,13 +43,13 @@ public class ArticleController {
         return "/article/article_list";
     }
 
-    @GetMapping("/page/{id}")
-    public String paging(@PathVariable int id, Model model) {
+    @GetMapping("/page/{pageIdx}")
+    public String paging(@PathVariable int pageIdx, Model model) {
         PageUtils.pageSetting(articleRepository);
-        int pageNum = PageUtils.getCountOfPage(id);
+        int pageNum = PageUtils.getPageNum(pageIdx);
         List<Article> articleList = articleRepository.getArticleListByPage(pageNum);
         model.addAttribute("articles", articleList);
-        model.addAttribute("pages", PageUtils.pageList);
+        model.addAttribute("pages", PageUtils.pageIndexList);
         return "/article/article_list";
     }
 
