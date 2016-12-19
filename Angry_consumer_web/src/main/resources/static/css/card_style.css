@@ -29,6 +29,15 @@
   font-family: 'Hanna', fantasy;
   height: 24px;
   overflow: hidden;
+  text-shadow:
+          -1px -1px 0 #000000,
+          1px -1px 0 #000000,
+          -1px 1px 0 #000000,
+          1px 1px 0 #000000,
+          -2px 0 0 #000000,
+          2px 0 0 #000000,
+          0 2px 0 #000000,
+          0 -2px 0 #000000;
 }
 
 .mdl-card__supporting-text {
