@@ -36,6 +36,13 @@ public class ArticleController {
     @Autowired
     private CommentRepository commentRepository;
 
+    @GetMapping("/classify/{option}")
+    public String articleListByOption(@PathVariable String option, Model model) {
+        List<Article> articleList = articleRepository.getArticleListByOption(option);
+        model.addAttribute("articles", articleList);
+        return "/article/article_list";
+    }
+
     @GetMapping("/page/{id}")
     public String paging(@PathVariable int id, Model model) {
         PageUtils.pageSetting(articleRepository);

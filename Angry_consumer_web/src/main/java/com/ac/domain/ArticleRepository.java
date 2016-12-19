@@ -26,6 +26,16 @@ public class ArticleRepository {
         this.jdbcTemplate = jdbcTemplate;
     }
 
+    public List<Article> getArticleListByOption(String option) {
+        String query = "SELECT a.*, i.path\n" +
+                       "FROM article AS a\n" +
+                       "INNER JOIN image AS i\n" +
+                       "ON i.idImage = a.idImage\n" +
+                       "WHERE a.classify = '" + option + "'\n" +
+                       "ORDER BY idArticle DESC";
+        return jdbcTemplate.query(query, new ArticleRowMapper());
+    }
+
     public List<Article> getArticleListCountOfSix() {
         String query = "SELECT a.*, i.path\n" +
                        "FROM article AS a\n" +

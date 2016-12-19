@@ -12,11 +12,11 @@
 
   <nav class="article-classify">
     <ul>
-      <li class="article-nav-link"><a href="#"><i class="fa fa-tag"></i>맛집</a></li>
-      <li class="article-nav-link"><a href="#"><i class="fa fa-tag"></i>술집</a></li>
-      <li class="article-nav-link"><a href="#"><i class="fa fa-tag"></i>카페</a></li>
-      <li class="article-nav-link"><a href="#"><i class="fa fa-tag"></i>펜션</a></li>
-      <li class="article-nav-link"><a href="#"><i class="fa fa-tag"></i>명소</a></li>
+      <li class="article-nav-link"><a href="/articles/classify/맛집"><i class="fa fa-tag"></i>맛집</a></li>
+      <li class="article-nav-link"><a href="/articles/classify/술집"><i class="fa fa-tag"></i>술집</a></li>
+      <li class="article-nav-link"><a href="/articles/classify/카페"><i class="fa fa-tag"></i>카페</a></li>
+      <li class="article-nav-link"><a href="/articles/classify/명소"><i class="fa fa-tag"></i>명소</a></li>
+      <li class="article-nav-link"><a href="/articles/classify/펜션"><i class="fa fa-tag"></i>펜션</a></li>
     </ul>
   </nav>
   <main>
@@ -64,7 +64,9 @@
     <div class="article-count-navigation">
       <span><i class="fa fa-angle-left"></i></span>
       <div class="article-count">
-        <span><a href="">1</a></span>
+        {{#pages}}
+        <span><a href="/articles/page/{{pageNum}}">{{pageNum}}</a></span>
+        {{/pages}}
       </div>
       <span><i class="fa fa-angle-right"></i></span>
     </div>
