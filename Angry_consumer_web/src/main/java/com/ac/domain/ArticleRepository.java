@@ -81,7 +81,7 @@ public class ArticleRepository {
 
     public int insertArticle(Article article, User user) {
         KeyHolder keyHolder = new GeneratedKeyHolder();
-        String query = "INSERT INTO article(title, classify, contents, user_id, idImage) VALUES(?,?,?,(SELECT id FROM USER WHERE id = ?),?)";
+        String query = "INSERT INTO article(title, classify, contents, user_id, idImage) VALUES(?,?,?,(SELECT id FROM user WHERE id = ?),?)";
         jdbcTemplate.update(new PreparedStatementCreator() {
             @Override
             public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
