@@ -11,7 +11,7 @@
   {{> /include/signup_modal}}
 
   <div class="article-navigation">
-    <a href="/articles">
+    <a href="/articles/page/1">
       <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
         목록
       </button>
@@ -79,7 +79,7 @@
   <div class="article-comment-lists">
     {{#comment}}
     <div class="article-comment-list">
-      <p style="font-weight: bolder;"><span style="padding-right: 16px;">{{writer.grade}}</span><span>{{writer.name}}</span></p>
+      <p style="font-weight: bolder;"><span style="padding-right: 16px;">{{userGrade}}</span><span>{{userName}}</span></p>
       <p>{{commentContent}}</p>
     </div>
     {{/comment}}

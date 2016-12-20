@@ -3,13 +3,7 @@ package com.ac.domain;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
-import org.springframework.jdbc.support.GeneratedKeyHolder;
-import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
-
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 /**
  * Created by Jbee on 2016. 10. 22..
@@ -34,18 +28,12 @@ public class UserRepository {
         return jdbcTemplate.update(query, user.getName(), user.getPassword(), user.getEmail());
     }
 
-    public String getUserGrade(User user) {
-        String query = "SELECT g.grade_name FROM USER AS u INNER JOIN grade AS g ON u.Grade_idGrade = g.idGrade WHERE id = ?";
-        return jdbcTemplate.queryForObject(query, new Object[]{user.getId()}, new RowMapper<String>() {
-            @Override
-            public String mapRow(ResultSet resultSet, int i) throws SQLException {
-                return resultSet.getString("g.grade_name");
-            }
-        });
-    }
-
     public User findUserByEmail(String email) {
-        String query = "SELECT * FROM user WHERE email=?";
+        String query = "SELECT u.*, g.grade_name\n" +
+                       "FROM user AS u\n" +
+                       "INNER JOIN grade AS g\n" +
+                       "ON u.Grade_idGrade = g.idGrade\n" +
+                       "WHERE email = ?";
         User resultUser;
         try {
             resultUser = jdbcTemplate.queryForObject(query, new Object[]{email}, new UserRowMapper());
@@ -57,7 +45,11 @@ public class UserRepository {
     }
 
     public User findUserByName(String name) {
-        String query = "SELECT * FROM user WHERE name=?";
+        String query = "SELECT u.*, g.grade_name\n" +
+                       "FROM user AS u\n" +
+                       "INNER JOIN grade AS g\n" +
+                       "ON u.Grade_idGrade = g.idGrade\n" +
+                       "WHERE name = ?";
         User resultUser;
         try {
             resultUser = jdbcTemplate.queryForObject(query, new Object[]{name}, new UserRowMapper());
@@ -68,7 +60,11 @@ public class UserRepository {
     }
 
     public User findUserById(int id) {
-        String query = "SELECT * FROM user WHERE id=?";
+        String query = "SELECT u.*, g.grade_name\n" +
+                       "FROM user AS u\n" +
+                       "INNER JOIN grade AS g\n" +
+                       "ON u.Grade_idGrade = g.idGrade\n" +
+                       "WHERE id = ?";
         User resultUser;
         try {
             resultUser = jdbcTemplate.queryForObject(query, new Object[]{id}, new UserRowMapper());
@@ -76,5 +72,9 @@ public class UserRepository {
             return null;
         }
         return resultUser;
+    }
+
+    public void callStoredProcedure(int id) {
+        jdbcTemplate.update("CALL update_user_grade(?)", id);
     }
 }

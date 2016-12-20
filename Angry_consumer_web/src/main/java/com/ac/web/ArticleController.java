@@ -4,7 +4,7 @@ import com.ac.domain.*;
 import com.ac.util.CheckUserUtils;
 import com.ac.util.FileUploadUtils;
 import com.ac.util.HttpSessionUtils;
-import com.ac.util.ImageSettingUtils;
+import com.ac.util.PageUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +21,9 @@ import java.util.List;
 @Controller
 @RequestMapping("/articles")
 public class ArticleController {
+
+    private static final String ALL_RANGE_SEARCH = "ALL";
+
     @Autowired
     private ArticleRepository articleRepository;
 
@@ -33,11 +36,20 @@ public class ArticleController {
     @Autowired
     private CommentRepository commentRepository;
 
-    @GetMapping("")
-    public String listPage(Model model) {
-        List<Article> articleList = articleRepository.getArticleList();
-        ImageSettingUtils.settingImageToArticle(articleList, imageRepository);
+    @GetMapping("/classify/{option}")
+    public String articleListByOption(@PathVariable String option, Model model) {
+        List<Article> articleList = articleRepository.getArticleListByOption(option);
         model.addAttribute("articles", articleList);
+        return "/article/article_list";
+    }
+
+    @GetMapping("/page/{pageIdx}")
+    public String paging(@PathVariable int pageIdx, Model model) {
+        PageUtils.pageSetting(articleRepository);
+        int pageNum = PageUtils.getPageNum(pageIdx);
+        List<Article> articleList = articleRepository.getArticleListByPage(pageNum);
+        model.addAttribute("articles", articleList);
+        model.addAttribute("pages", PageUtils.pageIndexList);
         return "/article/article_list";
     }
 
@@ -64,7 +76,7 @@ public class ArticleController {
         article.setWriterId(user.getId());
         article.setId(articleRepository.insertArticle(article, user));
 
-        return "redirect:/articles";
+        return "redirect:/articles/page/1";
     }
 
     @GetMapping("/{id}")
@@ -75,15 +87,9 @@ public class ArticleController {
         }
 
         User sessionedUser = HttpSessionUtils.getUserFromSession(session);
-
         Article article = articleRepository.getArticleByArticleId(id);
         User articleWriter = userRepository.findUserById(article.getWriterId());
-        articleWriter.setGrade(userRepository.getUserGrade(articleWriter));
         article.setWriter(articleWriter);
-
-        int imageId = article.getIdImage();
-        String fileName = imageRepository.getArticleImagePathById(imageId);
-        article.setFileName(fileName);
 
         model.addAttribute("article", article);
         if (sessionedUser.equals(articleWriter)) {
@@ -91,15 +97,7 @@ public class ArticleController {
         }
 
         List<Comment> commentList = commentRepository.getListOfComments(id);
-        for(Comment comment : commentList) {
-            int writerId = comment.getWriterId();
-            User user = userRepository.findUserById(writerId);
-            user.setGrade(userRepository.getUserGrade(user));
-            comment.settingWriter(user);
-        }
-
         model.addAttribute("comment", commentList);
-
         articleRepository.updateHitOfArticle(id);
 
         return "/article/article_detail";
@@ -110,7 +108,7 @@ public class ArticleController {
     public String deleteArticle(@PathVariable int id, HttpSession session) {
         Article article = CheckUserUtils.check(id, session, articleRepository, userRepository);
         articleRepository.deleteArticle(id);
-        return "/articles";
+        return "/articles/page/1";
     }
 
     @GetMapping("/{id}/form")
@@ -120,7 +118,6 @@ public class ArticleController {
         return "article/article_update_form";
     }
 
-    //추후 PutMapping으로 수정!
     @PostMapping("/{id}/update")
     public String updateArticle(@PathVariable int id, Article updatedArticle, HttpSession session) {
         Article article = CheckUserUtils.check(id, session, articleRepository, userRepository);
@@ -131,13 +128,12 @@ public class ArticleController {
     @GetMapping("/search")
     public String searchArticle(@RequestParam("query") String query, @RequestParam("searchRange") String searchRange, Model model) {
         List<Article> articleList;
-        if(searchRange.equals("ALL")) {
+        if (searchRange.equals(ALL_RANGE_SEARCH)) {
             articleList = articleRepository.getArticleListByQuery(query);
         } else {
             articleList = articleRepository.getArticleListByQueryOfRange(query, searchRange);
         }
 
-        ImageSettingUtils.settingImageToArticle(articleList, imageRepository);
         model.addAttribute("articles", articleList);
         return "/article/article_list";
     }

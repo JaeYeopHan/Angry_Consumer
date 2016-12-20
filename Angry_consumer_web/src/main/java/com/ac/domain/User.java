@@ -14,11 +14,14 @@ public class User {
     private String grade;
     private int sumOfAgree;
 
+    public User(){}
+
     public User (ResultSet rs) throws SQLException {
         this.id = rs.getInt("id");
         this.name = rs.getString("name");
         this.email = rs.getString("email");
         this.password = rs.getString("password");
+        this.grade = rs.getString("grade_name");
     }
 
     public int getId() {
@@ -67,6 +70,15 @@ public class User {
 
     public void setSumOfAgree(int sumOfAgree) {
         this.sumOfAgree = sumOfAgree;
+    }
+
+    public void updateUserInfo(String name) {
+        this.name = name;
+    }
+
+    public void updateUserInfo(String name, String password) {
+        this.name = name;
+        this.password = password;
     }
 
     @Override

@@ -38,16 +38,4 @@ public class ImageRepository {
         }, keyHolder);
         return keyHolder.getKey().intValue();
     }
-
-    public String getArticleImagePathById(int idImage) {
-        String query = "SELECT path FROM image WHERE idImage = ?";
-        Image resultImage;
-        try {
-            resultImage = jdbcTemplate.queryForObject(query, new Object[]{idImage}, new ImageRowMapper());
-        } catch (EmptyResultDataAccessException e) {
-            e.printStackTrace();
-            return null;
-        }
-        return resultImage.getFileName();
-    }
 }
