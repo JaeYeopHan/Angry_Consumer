@@ -8,7 +8,7 @@ import java.io.*;
  * Created by Jbee on 2016. 11. 22..
  */
 public class FileUploadUtils {
-    public static final String FILE_PATH = "/Users/Naver/angryconsumer_image/";
+    public static final String FILE_PATH = "/home/jbee/angryconsumer_image/";
     public static final String fileUpload(MultipartFile uploadFile) {
         if(uploadFile == null) {
             return "Not Found File!";
