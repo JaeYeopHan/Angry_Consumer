@@ -65,7 +65,7 @@ public class ArticleRepository {
         return  jdbcTemplate.query(query, new ArticleRowMapper());
     }
 
-    public List<Article> getArticleListByPage(int pageNum) {
+    public List<Article> getArticleListOfPage(int pageNum) {
         String query = "SELECT a.*, i.path\n" +
                        "FROM article AS a\n" +
                        "INNER JOIN image AS i\n" +

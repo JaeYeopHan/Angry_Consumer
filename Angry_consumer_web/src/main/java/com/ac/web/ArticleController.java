@@ -24,6 +24,12 @@ public class ArticleController {
 
     private static final String ALL_RANGE_SEARCH = "ALL";
 
+    private static final String ARTICLE_KEY = "article";
+    private static final String ARTICLE_OF_MINE_KEY = "article";
+    private static final String ARTICLE_LIST_KEY = "articles";
+    private static final String PAGE_LIST_KEY = "pages";
+    private static final String COMMENT_LIST_KEY = "comment";
+
     @Autowired
     private ArticleRepository articleRepository;
 
@@ -39,7 +45,7 @@ public class ArticleController {
     @GetMapping("/classify/{option}")
     public String articleListByOption(@PathVariable String option, Model model) {
         List<Article> articleList = articleRepository.getArticleListByOption(option);
-        model.addAttribute("articles", articleList);
+        model.addAttribute(ARTICLE_LIST_KEY, articleList);
         return "/article/article_list";
     }
 
@@ -47,9 +53,9 @@ public class ArticleController {
     public String paging(@PathVariable int pageIdx, Model model) {
         PageUtils.pageSetting(articleRepository);
         int pageNum = PageUtils.getPageNum(pageIdx);
-        List<Article> articleList = articleRepository.getArticleListByPage(pageNum);
-        model.addAttribute("articles", articleList);
-        model.addAttribute("pages", PageUtils.pageIndexList);
+        List<Article> articleList = articleRepository.getArticleListOfPage(pageNum);
+        model.addAttribute(ARTICLE_LIST_KEY, articleList);
+        model.addAttribute(PAGE_LIST_KEY, PageUtils.pageIndexList);
         return "/article/article_list";
     }
 
@@ -82,7 +88,6 @@ public class ArticleController {
     @GetMapping("/{id}")
     public String showArticleDetail(@PathVariable int id, Model model, HttpSession session) {
         if (!HttpSessionUtils.isLoginUser(session)) {
-            //로그인 모달 창 이벤트를 발생시키는게 더 좋지 않을까!
             return "redirect:/";
         }
 
@@ -91,13 +96,13 @@ public class ArticleController {
         User articleWriter = userRepository.findUserById(article.getWriterId());
         article.setWriter(articleWriter);
 
-        model.addAttribute("article", article);
+        model.addAttribute(ARTICLE_KEY, article);
         if (sessionedUser.equals(articleWriter)) {
-            model.addAttribute("myArticle", article);
+            model.addAttribute(ARTICLE_OF_MINE_KEY, article);
         }
 
         List<Comment> commentList = commentRepository.getListOfComments(id);
-        model.addAttribute("comment", commentList);
+        model.addAttribute(COMMENT_LIST_KEY, commentList);
         articleRepository.updateHitOfArticle(id);
 
         return "/article/article_detail";
@@ -114,7 +119,7 @@ public class ArticleController {
     @GetMapping("/{id}/form")
     public String articleUpdateForm(@PathVariable int id, Model model, HttpSession session) {
         Article article = CheckUserUtils.check(id, session, articleRepository, userRepository);
-        model.addAttribute("article", article);
+        model.addAttribute(ARTICLE_KEY, article);
         return "article/article_update_form";
     }
 
@@ -134,7 +139,7 @@ public class ArticleController {
             articleList = articleRepository.getArticleListByQueryOfRange(query, searchRange);
         }
 
-        model.addAttribute("articles", articleList);
+        model.addAttribute(ARTICLE_LIST_KEY, articleList);
         return "/article/article_list";
     }
 

@@ -20,6 +20,7 @@ public class PageUtils {
         countOfAllArticle = articleRepository.getcountOfAllArticle();
         countOfPage = (countOfAllArticle / countOfArticleInPage) + 1;
         pageIndexList = new ArrayList<>();
+
         for (int i = 1; i < countOfPage + 1; i++) {
             pageIndexList.add(new Page(i));
         }
@@ -29,16 +30,16 @@ public class PageUtils {
         Page page = pageIndexList.get(pageIdx - 1);
         return page.getArticleStartNum();
     }
-}
 
-class Page {
-    private int pageNum;
+    private static class Page {
+        private int pageNum;
 
-    protected Page(int pageNum) {
-        this.pageNum = pageNum;
-    }
+        Page(int pageNum) {
+            this.pageNum = pageNum;
+        }
 
-    protected int getArticleStartNum() {
-        return (this.pageNum - 1) * countOfArticleInPage;
+        int getArticleStartNum() {
+            return (this.pageNum - 1) * countOfArticleInPage;
+        }
     }
 }
