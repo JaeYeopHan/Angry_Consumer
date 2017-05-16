@@ -10,10 +10,10 @@
 
 ### 기술스택
 * WAS        :: Tomcat
-* Database   :: MySQL with JDBC Driver ( spring-boot-jdbc-starter )
+* Database   :: MySQL with jdbcTemplate ( spring-boot-jdbc-starter )
 * Build Tool :: Maven
-* Backend    :: Spring Boot
-* Fonrtend   :: HTML/CSS/JavaScript (ajax jQuery) with Material Design
+* BackEnd    :: Spring Boot
+* FrontEnd   :: HTML/CSS/JavaScript (ajax jQuery) with Material Design
 
 ### 서비스 화면
 
